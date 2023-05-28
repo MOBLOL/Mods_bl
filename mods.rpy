@@ -1,5 +1,5 @@
 init:
-    $ mods["Mods_Arseny_Danil_Vlad_Artem_day_1_1"]=u"qawseffr"
+    $ mods["Mods_Arseny_Danil_Vlad_Artem_day_1_1"]=u"MA2"
 
 
     $ sd = Character (u'Данил', color="#FFAA28", what_color="E2C778")
@@ -664,7 +664,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_1_6:
 
 
 label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
-    play music music_list["confession"] fadeout 4
+    play music music_list["a_promise_from_distant_days_v2"] fadeout 4
     scene int_house_of_mt_day with dissolve
     "Когда я проснулся?"
     "Я так и не понял."
@@ -693,25 +693,30 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
     "А пока я направился к выходу из домика."
     scene ext_house_of_mt_day with dissolve
     play sound sfx_slam_door_campus
+    play ambience ambience_camp_entrance_day fadeout 3
     th"Сейчас Ольга Дмитриевна должа встретить меня."
     "Когда я вышел, меня ослепил солнечный свет."
     "Я прикрыл глаза руками."
     "И стоял так, пока не привык к очень яркому солнечному свету"
     "Ко мне всё же подошла Ольга Дмитриевна."
+    show mt smile pioneer far with dissolve
     mt"Доброе утро, Данил!"
     th"Как и ожидалось."
     sd"Доброе!"
     mt"Ты только вчера приехал, так что будить я тебя не стала, но завтрак-то..."
     mt"Хотя ладно! Вот, держи!"
-    "Она протянула мне бумажный сёрток в котором находились бутерброды с завтрака."
+    "Она протянула мне бумажный свёрток в котором находились бутерброды с завтрака."
     mt"Кстати Данил, я смотрю ты уже форму получил."
     "Вот тут я знатно прифигел"
     mt"Если что её мне принесла Ульяна."
     mt"Я так поняла, что когда ты был на пляже они умыкнули твою форму."
     mt"Ведь спал ты в плавках"
+    show mt grin pioneer far with dissolve
     "Ольга Дмитриевна хихикнула."
+    show mt surprise pioneer far with dissolve
     mt"Кстати!"
     "Ольга Дмитриевна забежала в домик и вернувшись, вручила мне пакетик с рыльно-мыльными вещами. "
+    show mt smile pioneer far with dissolve
     mt"Пионер должен быть всегда чист и опрятен!"
     mt"Дай я тебе галстук завяжу..."
     sd"Не надо..."
@@ -724,9 +729,11 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
     sd"Нет, не забыл."
     mt"Так как сегодня понедельник..."
     sd"... поэтому она будет в 12 часов."
+    mt normal pioneer far with dissolve
     "Перебил я Ольгу Дмитриевну."
     sd"Говорю же - знаю!"
     "Ольга Дмитриевна приоткрыв рот смотрела на меня недоумевая"
+    show mt smile pioneer far with dissolve
     mt"Да Данил, правильно."
     mt"Ты становишь образцовым пионером!"
     mt"Молодец!"
@@ -735,15 +742,18 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
     th"Грех за Не постучавшегося Данила - искуплен."
     "Но покоя мне не давали слова Ольги Дмитриевны."
     "Я направился далее, к умывальникам."
+    scene ext_washstand2_day with dissolve
     "Стоя возле умывальников, я с болью в лице и зубах вспоминал их приятную, леденящую до костей, бодрящую водичку."
     "В пакетике с рыльно-мыльными принадлежностями я взял зубной порошок, насыпал себе на палец и начал чистить зубы."
-    play sound sfx_water_sink_stream
+    play sound sfx_water_sink_stream 
     th"С богом!"
     play sound sfx_close_water_sink
     stop sound sfx_water_sink_stream
     "Умылся я быстро."
     "Ведь холодная вода медлить не давала."
+    scene ext_washstand_day with dissolve 
     "Я уже собирался уходить, как тут меня нагнала Славя."
+    show sl normal sport far with
     "Она была одета в спортивный костюм."
     "Этот костюм сидел на ней особенно хорошо..."
     th"Но я больше по Алисам..."
@@ -751,19 +761,25 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
     th"Она бы услышала, что я назвал её в множественном числе."
     th"Она была бы зла..."
     "И тут со мной поздаровалась Славя."
-    sl"Физкульт-привет!"
+    show sl happy sport
+    sl"Фискульт-привет!"
     "Радостно поздаровалась она со мной."
     sd"И тебе доброе утро."
+    show sl smile sport with dissolve
     sl"Почему на завтрак не пришёл?"
     sd"Голоден не был. Генерал Спортикус!"
+    show sl laugh sport with dissolve
     "Славя засмеялась."
+    show sl smile sport with dissolve
     sd"Мне Ольга Дмитриевна бутерброды принесла."
     th"Так хочется сказать - бутеры..."
     sl"А, ну отлично тогда! Не забудь про линейку!"
     sd"Конечно."
     sl"Ладно, я побежала, не скучай!"
+    hide sl smile sport with dissolve
     "Она помахала мне рукой и продолжила бежать по тропинке."
-    "Теперь надо пойти в домик и оставить там пакетик с мыльными пренадлежностями."
+    "Теперь надо пойти в домик и оставить там пакетик с мыльно-рыльными пренадлежностями."
+    scene ext_houses_day with dissolve
     "По пути я размышлял о многом."
     th"Какой сейчас год?"
     th"Что будет с девочками в моём времени?"
@@ -771,10 +787,14 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
     "И с каждым вопросом, я всё сильнее погружался в себя."
     th"Если совместить хлеб и утку, то перестанет ли она есть хлеб, или будет питатся собой пока не останется только корка?"
     "И всё в таком духе..."
+    scene ext_house_of_mt_day with dissolve
+    stop music
+    play music music_list["awakening_power"] fadeout 3
     "Подойдя к домику Ольги Дмитриевны я был уже полностью погружён в себя."
     "И совершенно отключил память."
+    show d2_mt_undressed_2 with dissolve
+    play sound sfx_medpunkt_door_open with dissolve
     "Открыв дверь в домик, я увидел там переодевающуюся Ольгу Дмитриевну."
-    scene d2_mt_undressed with dissolve
     "На этом моменте, я вернулся из сознания."
     "Я забыл совершенно всё, о чём думал несколько минут назад."
     sd"Я...А..Просто.."
@@ -784,21 +804,25 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
     sd"Извините, пожалуйста."
     "Кинув на кровать всё что мне мешало прийти на площадь, я продолжил"
     sd"Больше не повторится!"
+    stop music
+    music_list["a_promise_from_distant_days_v2"] with dissolve
+    play sound sfx_close_door_campus with dissolve
+    scene ext_house_of_mt_day with dissolve
     "Я быстро захлопнул дверь, и побежал на площадь."
-    play sound sfx_close_door_campus_1
-    scene ext_house_of_mt_day
     th"Как я мог забыть?!?"
     "Не мудрено, ведь на сколько надо погрузится в себя чтобы задавать вопросы на подобии:"
     th"Что будет если смешать сладкий кофе и солёный чай?"
     th"Станут ли они противоречием друг-друга или это будет супер-дупер напиток."
     th"Ха-ха"
     "Я уже начинаю сходить с ума..."
+    scene ext_square_day with dissolve
     "Подбежав к площади, я увидел в шеренгу построенных пионеров."
     "Где слево стояла Алиса, а справо в начале Электроник."
+    show mt smile pioneer far with dissolve
     "Следом за мной пришла Ольга Дмитриевна."
     mt"Данил, встань в строй!"
     "Я покорно выполнил приказ."
-    scene d2_lineup
+    scene d2_lineup with dissolve
     "Ольга Дмитриевна как обычно рассказывает о спортивных соревнованиях и о планах на неделю."
     "Но в этот раз мне было интересно, что значат флаги над головой Генды."
     th"Красный,Зелёный,Синий."
@@ -807,23 +831,31 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
     th"Но при чём тут синий?"
     th"Или это может цвета флага это лагеря."
     th"Но почему тогда просто не повесить флаг?"
-    scene ext_square_day
+    scene ext_square_day with dissolve
+    show sl smile2 pioneer with dissolve
+    show mt smile pioneer with dissolve
     mt"Данил, ты всё запомнил?"
     sd"Так точно!"
+    show mt grin pioneer with dissolve
     mt"Вот и отлично!"
-    th"Если бы я сказал 'нет', то я бы опять узрел злое лицо Ольги Дмитриевну и её фирменную позу в виде букву 'Ф'."
+    show mt smile pioneer
+    th"Если бы я сказал 'нет', я бы опять узрел злое лицо Ольги Дмитриевну и её фирменную позу в виде букву \"Ф\"."
     "На что смотреть надо крайне редко."
     th"Иначе она своим взгядом сделает во мне дырку."
     "Рядом с вожатой стояла Славя."
     mt"Принесла?"
+    show mt surprise pioneer with dissolve
     sl"Да."
+    show sl smile pioneer with dissolve
     "В руках у неё был мой 'любимый' обходной лист."
     "Который она протянула мне."
     mt"Это обходной лист. Тут четыре позиции. За сегодня тебе нужно везде отметиться."
     mt"Во-первых, записаться в клуб, они у нас в здании кружков и отдельно - музыкальный."
     mt"Во-вторых, в  медпункт зайти."
     mt"Ну, и в-третьих - в библиотеку."
+    show mt angry pioneer with dissolve
     mt"Всё понял?"
+    show mt smile pioneer with dissolve
     sd"Да."
     th"Бла-бла-бла."
     "Я уже начинал уставать от этой болтавни."
@@ -831,13 +863,22 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
     sd"Хорошо!"
     "Я вышел из строя и пошёл по направлению к..."
     Тут идёт карта: от выбора ничего не зависит.
+
+    disable_all_zones()
+    set_zone("clubs", "Mods_Arseny_Danil_Vlad_Artem_day_2_2")
+    set_zone("music_club", "Mods_Arseny_Danil_Vlad_Artem_day_2_2")
+    set_zone("dining_hall", "Mods_Arseny_Danil_Vlad_Artem_day_2_2")
+    set_zone("medic_house", "Mods_Arseny_Danil_Vlad_Artem_day_2_2")
+    set_zone("library", "Mods_Arseny_Danil_Vlad_Artem_day_2_2")
+
+label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     th"Естественно обходить ВСЁ я не собирался."
     "Зная то, что Ольга Дмитриевна не будет смотреть в листок, я решился просто подделать подписи."
     "За несколько недель я их уже выучил."
     th"Только надо найти ручку."
     th"А ручку можно найти в медпункте."
     "Куда я и направился."
-    scene ext_houses_day
+    scene ext_houses_day with dissolve
     "Проходя средь домиков"
     "Я думал о том, почему именно мне дали обходной?"
     th"Почему не Ульяне например?"
