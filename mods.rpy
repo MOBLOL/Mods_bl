@@ -1,6 +1,6 @@
 init:
 
-    $ mods["hfhfhrf_1"]=u"qawseffr"
+    $ mods["Arsen_Danil_Vlad_Artem_day_1_1"]=u"qawseffr"
     $ sd = Character (u'Данил', color="#FFAA28", what_color="E2C778")
     $ vl = Character (u'Влад', color="#0000FF", what_color="E2C778")
     $ ar = Character (u'Арсений', color="#0000FF", what_color="#2f853e")
@@ -36,7 +36,7 @@ init:
 
 
 
-label hfhfhrf_1:
+label Arsen_Danil_Vlad_Artem_day_1_1:
     play music music_list["a_promise_from_distant_days"]
     th"И снова этот лагерь..."
     th"Может в этот раз повезёт?"
@@ -322,12 +322,12 @@ label hfhfhrf_1:
 menu:                    
         "Сказать имя":
             $ us_ochki += 1
-            jump hfhfhrf_2
+            jump Arsen_Danil_Vlad_Artem_day_1_2
             
         "Ничего не говорить":
             $ us_ocki = 0
-            jump hfhfhrf_3
-label hfhfhrf_2:
+            jump Arsen_Danil_Vlad_Artem_day_1_3
+label Arsen_Danil_Vlad_Artem_day_1_2:
     sd"Данил меня звать.А вас девчата как?"
     th"Они явно не ожидали такого дерзкого и резкого ответа."
     show dv suprise pioneer2 at left with dissolve
@@ -338,8 +338,8 @@ label hfhfhrf_2:
     th"Сказал я увернно и без единого промаха."
     dv"Иди,иди."
     th"Я поставил тарелку и вышел из столовой."
-jump hfhfhrf_4
-label hfhfhrf_3:
+jump Arsen_Danil_Vlad_Artem_day_1_4
+label Arsen_Danil_Vlad_Artem_day_1_3:
 show dv laugh pioneer2 at left with dissolve
 show us laugh sport at right with dissolve
     us"Может он немой или глухой?"
@@ -351,7 +351,7 @@ show us laugh sport at right with dissolve
     th"Сказал я дрожащим голосом."
     dv"Наконец-то!"
     th"Я быстро доел, и направился к выходу."
-    label hfhfhrf_4:
+    label Arsen_Danil_Vlad_Artem_day_1_5:
     scene ext_dining_hall_near_day with dissolve
     th"Выйдя из столовой, я решил направится к кружкам и снова попытать удачу."
     th"Только на этот раз я зашёл сразу зайти к нашему музыканту."
@@ -530,10 +530,10 @@ show us laugh sport at right with dissolve
 menu:
     "Вылезти через форточку":
         $ us_ocki = 0
-        jump hfhfhrf_5
+        jump Arsen_Danil_Vlad_Artem_day_1_5
     "Выйти через дверь":
         $ us_ochki +=1
-        jump hfhfhrf_6
+        jump Arsen_Danil_Vlad_Artem_day_1_6
      
 label hfhfhrf_5:
     th"Была не была"
@@ -554,8 +554,8 @@ label hfhfhrf_5:
     th"Но в итоге они просто разлетелись по комнате..."
     th"Ладно, сейчас не об этом."
     th"Я развернулся и пошёл в домик Ольги Дмитриевны."
-jump hfhfhrf_7
-label hfhfhrf_6:
+jump Arsen_Danil_Vlad_Artem_day_1_7
+label Arsen_Danil_Vlad_Artem_day_1_6:
     th"Думаю более логичным будет, найти ключ и просто выйти отсюда."
     th"Только где его искать?"
     th"Хорошо, я с ними не первый цикл."
@@ -572,7 +572,7 @@ label hfhfhrf_6:
     th"Пусть лежит."
     th"Будет им уроком."
     th"Закинув ключ, а он упал довольно громко, я направился к домику Ольги Дмитриевны."
-label hfhfhrf_7:
+label Arsen_Danil_Vlad_Artem_day_1_7:
     th"По пути я размышлял."
     th"Кто мог взять мои вещи?"
     th"Может я зря с ними так поступил?"
@@ -598,6 +598,3 @@ label hfhfhrf_7:
 
 
 
-
-
-uegibewaiugb
