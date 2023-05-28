@@ -1,8 +1,9 @@
-    $ sd = Character (u'Данил', color="#FFAA28", what_color="E2C778")
+init:
     $ vl = Character (u'Влад', color="#0000FF", what_color="E2C778")
     $ ar = Character (u'Арсений', color="#0000FF", what_color="E2C778")
     $ ap = Character (u'Пришелец', color="#0000FF", what_color="E2C778") - Арсений
     $ bp = Character (u'Пришелец', color="#0000FF", what_color="E2C778") - Влад
+
     "Когда я проснулся?"
     "Я так и не понял."
     "Но лежал с закрытыми глазами долго, притворяясь спящим."

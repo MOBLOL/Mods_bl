@@ -1,37 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 init:
 
     $ mods["Arsen_Danil_Vlad_Artem_day_1_1"]=u"qawseffr"
