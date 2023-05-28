@@ -1,10 +1,41 @@
 init:
+
     $ mods["hfhfhrf_1"]=u"qawseffr"
     $ sd = Character (u'Данил', color="#FFAA28", what_color="E2C778")
+    $ vl = Character (u'Влад', color="#0000FF", what_color="E2C778")
+    $ ar = Character (u'Арсений', color="#0000FF", what_color="#2f853e")
+    $ ap = Character (u'Пришелец', color="#0000FF", what_color="#648a6b") # Арсений
+    $ bp = Character (u'Пришелец', color="#0000FF", what_color="#648a6b") # Влад
+
     $ us_ochki = 0
+    $ sl_ochki = 0
+    $ un_ochki = 0
+    $ dv_ochki = 0
+    $ mi_ochki = 0
+    $ uv_ochki = 0
     
     $ persistent.sprite_time = 'day'
     
+
+
+
+
+
+    
+##                                                                        ░░███╗░░
+##                                                                        ░████║░░
+##                                                                        ██╔██║░░
+##                                                                        ╚═╝██║░░
+##                                                                        ███████╗
+##                                                                        ╚══════╝
+
+
+
+
+
+
+
+
 label hfhfhrf_1:
     play music music_list["a_promise_from_distant_days"]
     th"И снова этот лагерь..."
@@ -549,5 +580,23 @@ label hfhfhrf_7:
     th"Ведь кроме них двоих шутников у нас нету."
     th"Зайдя в домик Ольги Дмитриевны, я думал что она мне скажет завтра и будет ли она меня пытать?"
     th"Накрывшись одеялом, я вздохнул и скоро заснул."
+
+
+
+
+
  
   
+##                                                                                                    ██████╗░
+##                                                                                                    ╚════██╗
+##                                                                                                    ░░███╔═╝
+##                                                                                                    ██╔══╝░░
+##                                                                                                    ███████╗
+##                                                                                                    ╚══════╝
+
+
+
+
+
+
+
