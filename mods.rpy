@@ -5,8 +5,8 @@ init:
     $ sd = Character (u'Данил', color="#FFAA28", what_color="E2C778")
     $ vl = Character (u'Влад', color="#0000FF", what_color="E2C778")
     $ ar = Character (u'Арсений', color="#0000FF", what_color="E2C778")
-    $ ap = Character (u'Пришелец', color="#0000FF", what_color="E2C778") - Арсений
-    $ bp = Character (u'Пришелец', color="#0000FF", what_color="E2C778") - Влад
+    $ ap = Character (u'Пришелец', color="#0000FF", what_color="E2C778") #- Арсений
+    $ bp = Character (u'Пришелец', color="#0000FF", what_color="E2C778") #- Влад
 
 
     $ us_ochki = 0
@@ -354,11 +354,11 @@ label Mods_Arseny_Danil_Vlad_Artem_day_1_1:
 menu:                    
         "Сказать имя":
             $ us_ochki += 1
-            jump Mods_Arseny_Danil_Vlad_Artem_day_1_2:
+            jump Mods_Arseny_Danil_Vlad_Artem_day_1_2
             
         "Ничего не говорить":
             $ us_ocki = 0
-            jump Mods_Arseny_Danil_Vlad_Artem_day_1_3:
+            jump Mods_Arseny_Danil_Vlad_Artem_day_1_3
 label Mods_Arseny_Danil_Vlad_Artem_day_1_2:
     sd"Данил меня звать.А вас девчата как?"
     "Они явно не ожидали такого дерзкого и резкого ответа."
@@ -372,7 +372,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_1_2:
     show dv normal pioneer2 at left with dspr   
     dv"Иди,иди."
     "Я поставил тарелку и вышел из столовой."
-jump Mods_Arseny_Danil_Vlad_Artem_day_1_4:
+jump Mods_Arseny_Danil_Vlad_Artem_day_1_4
 label Mods_Arseny_Danil_Vlad_Artem_day_1_3:
     show dv normal pioneer2 at left with dissolve
     show us surp2 pioneer at right with dissolve
@@ -579,10 +579,10 @@ label Mods_Arseny_Danil_Vlad_Artem_day_1_4:
 menu:
     "Вылезти через форточку":
         $ us_ocki = 0
-        jump Mods_Arseny_Danil_Vlad_Artem_day_1_5:
+        jump Mods_Arseny_Danil_Vlad_Artem_day_1_5
     "Выйти через дверь":
         $ us_ochki +=1
-        jump Mods_Arseny_Danil_Vlad_Artem_day_1_6:
+        jump Mods_Arseny_Danil_Vlad_Artem_day_1_6
      
 label Mods_Arseny_Danil_Vlad_Artem_day_1_5:
     th"Была не была"
@@ -605,7 +605,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_1_5:
     "Но в итоге они просто разлетелись по комнате..."
     th"Ладно, сейчас не об этом."
     "Я развернулся и пошёл в домик Ольги Дмитриевны."
-jump Mods_Arseny_Danil_Vlad_Artem_day_1_7:
+jump Mods_Arseny_Danil_Vlad_Artem_day_1_7
 label Mods_Arseny_Danil_Vlad_Artem_day_1_6:
     "Думаю более логичным будет, найти ключ и просто выйти отсюда."
     "Только где его искать?"
@@ -729,7 +729,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
     sd"Нет, не забыл."
     mt"Так как сегодня понедельник..."
     sd"... поэтому она будет в 12 часов."
-    mt normal pioneer far with dissolve
+    show normal pioneer far with dissolve
     "Перебил я Ольгу Дмитриевну."
     sd"Говорю же - знаю!"
     "Ольга Дмитриевна приоткрыв рот смотрела на меня недоумевая"
@@ -745,15 +745,14 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
     scene ext_washstand2_day with dissolve
     "Стоя возле умывальников, я с болью в лице и зубах вспоминал их приятную, леденящую до костей, бодрящую водичку."
     "В пакетике с рыльно-мыльными принадлежностями я взял зубной порошок, насыпал себе на палец и начал чистить зубы."
-    play sound sfx_water_sink_stream 
     th"С богом!"
+    stop sound 
     play sound sfx_close_water_sink
-    stop sound sfx_water_sink_stream
     "Умылся я быстро."
     "Ведь холодная вода медлить не давала."
     scene ext_washstand_day with dissolve 
     "Я уже собирался уходить, как тут меня нагнала Славя."
-    show sl normal sport far with
+    show sl normal sport far with dissolve
     "Она была одета в спортивный костюм."
     "Этот костюм сидел на ней особенно хорошо..."
     th"Но я больше по Алисам..."
@@ -793,7 +792,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
     "Подойдя к домику Ольги Дмитриевны я был уже полностью погружён в себя."
     "И совершенно отключил память."
     show d2_mt_undressed_2 with dissolve
-    play sound sfx_medpunkt_door_open with dissolve
+    play sound sfx_medpunkt_door_open fadeout 3
     "Открыв дверь в домик, я увидел там переодевающуюся Ольгу Дмитриевну."
     "На этом моменте, я вернулся из сознания."
     "Я забыл совершенно всё, о чём думал несколько минут назад."
@@ -805,8 +804,9 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
     "Кинув на кровать всё что мне мешало прийти на площадь, я продолжил"
     sd"Больше не повторится!"
     stop music
-    music_list["a_promise_from_distant_days_v2"] with dissolve
-    play sound sfx_close_door_campus with dissolve
+    play music music_list["a_promise_from_distant_days_v2"] fadeout 3
+    play sound sfx_close_door_campus fadeout 3
+    hide d2_mt_undressed_2 with dissolve
     scene ext_house_of_mt_day with dissolve
     "Я быстро захлопнул дверь, и побежал на площадь."
     th"Как я мог забыть?!?"
@@ -862,14 +862,11 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_1:
     mt"Тогда давай, начинай прямо сейчас."
     sd"Хорошо!"
     "Я вышел из строя и пошёл по направлению к..."
-    Тут идёт карта: от выбора ничего не зависит.
+    #Тут идёт карта: от выбора ничего не зависит.
 
-    disable_all_zones()
-    set_zone("clubs", "Mods_Arseny_Danil_Vlad_Artem_day_2_2")
-    set_zone("music_club", "Mods_Arseny_Danil_Vlad_Artem_day_2_2")
-    set_zone("dining_hall", "Mods_Arseny_Danil_Vlad_Artem_day_2_2")
-    set_zone("medic_house", "Mods_Arseny_Danil_Vlad_Artem_day_2_2")
-    set_zone("library", "Mods_Arseny_Danil_Vlad_Artem_day_2_2")
+    $ disable_all_zones()
+    $ set_zone("clubs", "day1_gone_to_clubs")
+    $ show_map()
 
 label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     th"Естественно обходить ВСЁ я не собирался."
@@ -988,10 +985,10 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     th"Я же не зря кадрил медсестру."
     sd"Просто умыться пришёл."
     dv"А..Ну раз умыться."
-      dv"Ты кстати хорошо с одеждой придумал..." - путь открывается, если в первом дне выбрать *Выйти через дверь*
-      th"Она откуда-то узнала, что это был я."
-      "Я был насторожен."
-      dv"Просто в следующий раз, когда будешь бросать ключ, делай это тише."
+    dv"Ты кстати хорошо с одеждой придумал..." #- путь открывается, если в первом дне выбрать *Выйти через дверь*
+    th"Она откуда-то узнала, что это был я."
+    th"Я был насторожен."
+    dv"Просто в следующий раз, когда будешь бросать ключ, делай это тише."
     "Она начала приближатся к воде."
     sd"Только не мочить!"
     dv"Я тоже умыться хочу."
@@ -1097,7 +1094,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     "А песня..."
     "Не вспомню..."
     th"Можете пропустить песню или послушать до конца."
-      КАНЕЦ!!!
+     # КАНЕЦ!!!
     "Слова песни явно на что-то намекали..." 
     sd"Вот песни тогда были..."
     th"Точнее сейчас..."
@@ -1228,7 +1225,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     "А то если Ольга Дмитриевна увидит что я бежал, она подумает не ладное."
     "Подходя к домику Ольги Дмитриевны, я увидел что она сидела возле домика и читала книжку."
     th"Вон она..Сидит бездельничает."
-    "Я в свою очередь думал о том достаточно ли долго тянул время."- строка будет открыта если выбрать *Гулять*
+    "Я в свою очередь думал о том достаточно ли долго тянул время." #- строка будет открыта если выбрать *Гулять*
     th"Ну, с богом."
     "Подойдя в зону обнаружение вожатой"
     "Я протянул ей листок с подделаными подписями."
@@ -1387,7 +1384,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     "Там как раз была Славя."
     "И Ольга Дмитриевна."
     mt"Здравствуйте пионеры!"
-    ar;bp"Здравствуйте!"
+    bp"Здравствуйте!"
     "Ответили они хором."
     mt"Я вожатая этого лагеря."
     mt"Меня зовут Ольга Дмитриевна."
@@ -1666,7 +1663,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     "Не успев занять своё место..."
     "Меня кто-то окликнул."
     "Инстинктивно обернувшись..."
-     Моргание 1 раз
+    # Моргание 1 раз
      #Эффект помех пропадает
     scene int_bus_night
     "Я никого не увидел."
@@ -1693,4 +1690,4 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     # Laughter1_day2 Laughter2_day2 Laughter3_day2 ОДНОВРЕМЕННО
     voices"...мы тебя ждём..."
     # LoudLaughter_day2    
-    stop_music 
+    stop music 
