@@ -17,16 +17,19 @@ init:
     $ mi_ochki = 0
     $ uv_ochki = 0
 
-    $ day_1_exit_door = 0
+    $ day_1_is_exit_door = 0
+    $ is_hodil_brodil = 0
     
     $ daylock = "false"
 
     image int_house_of_dv_night2 = "mods/Mods_A_D_V_A/img/int_house_of_dv_night2.jpg"
     image d2_mt_undressed_me = "mods/Mods_A_D_V_A/img/d2_mt_undressed_me.jpg"
     image d2_mt_undressed_2_me = "mods/Mods_A_D_V_A/img/d2_mt_undressed_2_me.jpg"
+    image ext_stage_normal_sunset = "mods/Mods_A_D_V_A/img/ext_stage_normal_sunset.png"
 
     $ KinoBezdelnik = "mods/Mods_A_D_V_A/music/KinoBezdelnik.mp3"
     $ Zvezda = "mods/Mods_A_D_V_A/music/Zvezda.mp3"
+    $ volnyuch "mods/Mods_A_D_V_A/music/volnyuch.mp3"
 
 
 
@@ -970,6 +973,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
 menu:
     "Гулять":
         jump Mods_Arseny_Danil_Vlad_Artem_day_2_3
+        $ is_hodil_brodil = 1
     "Пойти к Ольге Дмитриевне":
         jump Mods_Arseny_Danil_Vlad_Artem_day_2_7
 
@@ -981,6 +985,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_3:
     $ disable_all_zones()
     $ set_zone("beach", "Mods_Arseny_Danil_Vlad_Artem_day_2_4")
     $ set_zone("boat_station", "Mods_Arseny_Danil_Vlad_Artem_day_2_5")
+    $ set_zone("estrade", "Mods_Arseny_Danil_Vlad_Artem_day_2_6")
 
     $ show_map()
 
@@ -1089,8 +1094,8 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_5:
     "Я испугался и открыл глаза."
     hide blink
     show unblink
-    show sl smile2 swim 
     sd"А-А-А-А!"
+    show sl smile2 swim with dissolve
     hide unblink
     "Я за малым не свалился в воду."
     sd"Предупреждай хотя бы."
@@ -1170,7 +1175,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_6:
     th"Надеюсь..."
     #Тут все выборы сходятся
 label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
-    play music music_list["feeling_good"] fadeout 3
+    play music music_list["everyday_theme"] fadeout 3
     #Если выбрать *Пойти к Ольге Дмитриевне.*
     scene ext_square_day with dissolve
     "Проходя мимо памятника Генды я в очередной раз думал чем он так знаменит."
@@ -1299,7 +1304,8 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     "Я вылез из под сцены."    
     th"Мда..."
     th"Я думал будет интереснее."
-    "Обессилевшись, я рухнул на лавочку которая выступала здесь как трибуны."
+    "Обессилевшись, я рухнул на лавочку которая выступала здесь как трибуны и закрыл глаза."
+    show blink
     th"Ха..."
     th"Лавочки выступают..."
     "Мне показалось это смешным."
@@ -1307,72 +1313,130 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     "У них были причёски 90-х"
     "Солнце слепило меня, поэтому я закрыл глаза."
     "Эти лавочки стояли на сцене перед тысячами фанатов и пели какую-то знакомую мелодию."
+    stop music
     play music Zvezda
     #https://ruo.morsmusic.org/track/214w
     ss"Вы можете пропустить песню или дослушать до конца."
     #КАНЕЦ!!!
+    stop music fadeout 3
+    play music music_list["everyday_theme"] fadeout 3
+    scene ext_stage_normal_sunset 
     sd"А лавочки то жгут..."
+    hide blink
+    show unblink
     "Открыв глаза, солнце уже садилось."
     th"ОБХОДНОЙ!"
+    scene ext_houses_sunset with dissolve
     "Я вскочил с лавочки и побежал сначало к домику вожатой."
     "Бежал я со всех ног."
     "А то я что-то слишком долго обходной подписывал."
     "По пути к домику, я решил остановится чтобы восстановить дыхание."
     "А то если Ольга Дмитриевна увидит что я бежал, она подумает не ладное."
+    scene ext_house_of_mt_sunset with dissolve
     "Подходя к домику Ольги Дмитриевны, я увидел что она сидела возле домика и читала книжку."
     th"Вон она..Сидит бездельничает."
+    if is_hodil_brodil == 1:
     "Я в свою очередь думал о том достаточно ли долго тянул время." #- строка будет открыта если выбрать *Гулять*
     th"Ну, с богом."
+    show mt normal pioneer far at right with dissolve
     "Подойдя в зону обнаружение вожатой"
     "Я протянул ей листок с подделаными подписями."
+    show mt smile pioneer at center with dspr
     sd"Сделано!"
     "Она не читая обходной, сунула листок в карман"
     th"Есть!"
     th"Клюнула рыбка!"
+    show mt surprise pioneer with dspr
     mt"Молодец! Ну как, познакомился с нашей медсестрой?"
     sd"Конечно!"
     "Я разговаривал очень уверенно."
+    show mt normal pioneer with dspr
     mt"В какой кружок записался?"
     sd"Пока никуда.. Но думаю позже точно куда-нибудь запишусь!"
+    show mt angry pioneer with dspr
     mt"Ну смотри! Скоро конец смены. Времени мало!"
     "Подметила она."
     mt"Ладно, пора уже и на ужин идти."
+    show mt smile pioneer with dspr
     th"Наконец-то!"
+    scene ext_square_sunset with dissolve
     "После этих слов, я вместе с вожатой направились к столовой."
     "Солнце уже садилось."
     th"Значит я слишком сильно тянул время..."
+    scene ext_dining_hall_away_sunset with dspr
     "Когда мы подошли к столовой, на крыльце стояли несколько человек."
     "Электроник, Алиса"
     "Ульяна и Славя."
     "Подойдя ближе, я услышал о чём они болтали."
+    stop music fadeout 3
+    play music music_list["awakening_power"] fadeout 3
+    show dv angry pioneer far with dissolve
+    show el sad pioneer far at left with dspr:
+        xcentr 0.3 ycentr 0.5
     dv"И больше не называй меня ДваЧе, а то ты у меня получишь!"
+    show el upset pioneer far yt left with dspr:
+        xcentr 0.3 ycentr 0.5
     el"Не называл я тебя так!"
+    show dv rage pioneer far with dspr 
     us"Называл, Называл! Я всё слышала!"
+    show us laugh pioneer far with dissolve:
+        xcentr 0.1 ycentr 0.5
     el"Тебя даже там не было!"
+    show el shocked pioneer far with dspr:
+        xcentr 0.3 ycentr 0.5
     us"А вот и была. Я в кустах сидела."
+    show us grin pioneer far with dspr:
+        xcentr 0.1 ycentr 0.5
     sl"Хватит вам! Прекратите!"
+    show sl serious pioneer far with dissolve:
+        xcentr 0.7 ycentr 0.5
     th"Разговор был не на жизнь, а на смерть!"
     "Но тут в разговор вмешалась Ольга Дмитриевна."
+    show el surprise pioneer far with dspr:
+        xcentr 0.3 ycentr 0.5
+    show dv angry pioneer far with dspr:
+        xcentr 0.46 ycentr 0.5
+    show sl surprise pioneer far with dspr
+        xcentr 0.65 ycentr 0.5
+    show mt rage pioneer far with dspr:
+        xcentr 0.84 ycentr 0.5
     mt"Что вы тут ругаетесь?"
+    show sl angry pioneer far with dspr
+        xcentr 0.65 ycentr 0.5
     sl"Алиса Сыроежкину угрожает..."
+    show dv rage pioneer far with dspr:
+        xcentr 0.46 ycentr 0.5
     dv"Ничего я не угрожаю, а предупреждаю!"
     "Алиса была агрессивно настроена."
+    show mt angry pioneer far with dspr
+        xcentr 0.65 ycentr 0.5
     mt"Ладно, успокоились и пошлите ужинать."
+    stop music fadeout 3
+label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
+    scene int_dining_hall_people_day with dissolve
+    play music music_list["eat_some_trouble"] fadeout 3
+    play ambience ambience_dining_hall_full fadeout 5
     "Все вместе мы вошли в столовую."
     "Кроме Слави."
     "Она куда-то удалилась никого не предупредив."
     "Я всё решил промолчать о её отсутствии и просто двинулся по направлению к запаху еды."
+    show mi normal pioneer with dissolve
     "Запах привёл меня на место рядом с Мику."
     sd"Привет! Тут свободно?"
+    show mi smile pioneer with dspr
     mi"Ой..Привет! Да конечно садись."
     sd"Спасибо!"
     "Не смотря на то что, это был первый раз встречи с Мику, она разговаривала со мной как обычно."
+    show mi grin pioneer with dspr
     mi"Сегодня, смотри, гречка. Ты любишь гречку? И варёная курица! Я вообще курицу не люблю. Ну, то есть не то что не люблю..."
     "Она как обычно выпускала очереди слов из своего рта-пулемёта."
+    show mi surprise pioneer with dspr
     mi"Ну если бы меня спросили, что бы мне больше всего хотелось, то бефстроганов или рагу... Нет, может быть просто котлету! Или ромштекс! Ты любишь ромштексы?"
     "Если бы я знал что это... Но звучит как мясо."
     sd"Я всеядный."
+    show mi smile pioneer with dspr
     mi"Понятно. Но вот десерты, ты знаешь, мне здесь не очень нравятся. Я мороженое люблю! Ты любишь мороженое? Особенно пломбир <48 копеек>, но и <Ленинградское> тоже. Ой, прости, я всё о себе!"
+    show mi normal pioneer with dspr
     mi"Может ты больше эскимо любишь?"
     "Я понимал только каждые три слова."
     th"Десерт, мороженое, любишь..."
@@ -1384,15 +1448,19 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     th"Может отчитывать будет?"
     th"Но что я такого сделал?"
     th"Может она просекла, что я прогуливал обходной?"
+    hide mi normal pioneer with dspr
+    show sl angry pioneer with dissolve
     sl"Данил!"
     "Я приготовился слушать отчёт в мою сторону."
     "Славя села рядом с Мику."
+    show sl happy pioneer with dspr
     sl"Не поверишь, сегодня автобус приезжал."
     "Я поперхнулся."
     sd"Кх.Кх.."
     sd"А..Автобус?!?"
     th"ЧТО?"
     sd"ОН ЕЩЁ ТАМ?"
+    show sl sad pioneer with dissolve
     sl"Не перебивай!"
     sl"Так вот..."
     "Она тянула, явно что-то скрывая."
@@ -1400,6 +1468,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     "Я ПОПЕРХНУЛСЯ!!!"
     "Хотя было уже не чем."
     sd"Ч..Чего!?!"
+    show sl smile2 pioneer with dissolve
     sl"Каких их зовут я так и не узнала."
     sl"Но они были напуганы..."
     sl"Я подумала ты что-то знаешь."
@@ -1408,9 +1477,13 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     "Не пропускал НИ ЕДИНОГО слова."
     "После чего перебил её."
     sd"Ты знаешь где они?"
+    show sl happy pioneer with dissolve
     sl"Я направила их к домику Ольги Дмитриевны."
     "Я вскочил с места и побежал до домика вожатой!"
     "Славя кричала что-то вслед, но мне было крайне не до этого."
+    stop music fadeout 3
+    scene ext_dining_hall_away_sunset with dissolve
+    play music volnyuch fadeout 3
     "Выбежав..."
     "Нет.."
     "ВЫЛЕТЕВ из столовой, я со сверх скоростью побежал к домику вожатой."
@@ -1423,6 +1496,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     th"Либо это везение, либо это ошибка системы."
     "Все вопросы я решил оставить им."
     th"На месте разберёмся."
+    scene ext_house_of_mt_sunset with dissolve
     "Подбегая к домику уже виднелись какие-то не знакомые мне силуэты."
     "Искра надежды освежила меня."
     "Я подбежал к домику, возле которого стояли два..."
@@ -1433,6 +1507,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     "Моей радости не было придела."
     "Но всё же я собрался с мыслями и начал диалог с пришельцами."
     sd"Привет пионеры!"
+
     "Они обернулись и показали свои лица..."
     bp"Здравствуй!"
     ap"Здравствуйте!"
