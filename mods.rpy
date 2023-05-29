@@ -29,7 +29,7 @@ init:
 
     $ KinoBezdelnik = "mods/Mods_A_D_V_A/music/KinoBezdelnik.mp3"
     $ Zvezda = "mods/Mods_A_D_V_A/music/Zvezda.mp3"
-    $ volnyuch "mods/Mods_A_D_V_A/music/volnyuch.mp3"
+    $ volnyuch = "mods/Mods_A_D_V_A/music/volnyuch.mp3"
 
 
 
@@ -1321,9 +1321,9 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     stop music fadeout 3
     play music music_list["everyday_theme"] fadeout 3
     scene ext_stage_normal_sunset 
+    show unblink
     sd"А лавочки то жгут..."
     hide blink
-    show unblink
     "Открыв глаза, солнце уже садилось."
     th"ОБХОДНОЙ!"
     scene ext_houses_sunset with dissolve
@@ -1336,7 +1336,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     "Подходя к домику Ольги Дмитриевны, я увидел что она сидела возле домика и читала книжку."
     th"Вон она..Сидит бездельничает."
     if is_hodil_brodil == 1:
-    "Я в свою очередь думал о том достаточно ли долго тянул время." #- строка будет открыта если выбрать *Гулять*
+        "Я в свою очередь думал о том достаточно ли долго тянул время." #- строка будет открыта если выбрать *Гулять*
     th"Ну, с богом."
     show mt normal pioneer far at right with dissolve
     "Подойдя в зону обнаружение вожатой"
@@ -1372,44 +1372,44 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     play music music_list["awakening_power"] fadeout 3
     show dv angry pioneer far with dissolve
     show el sad pioneer far at left with dspr:
-        xcentr 0.3 ycentr 0.5
+        xcenter 0.3 ycenter 0.5
     dv"И больше не называй меня ДваЧе, а то ты у меня получишь!"
     show el upset pioneer far yt left with dspr:
-        xcentr 0.3 ycentr 0.5
+        xcenter 0.3 ycenter 0.5
     el"Не называл я тебя так!"
     show dv rage pioneer far with dspr 
     us"Называл, Называл! Я всё слышала!"
     show us laugh pioneer far with dissolve:
-        xcentr 0.1 ycentr 0.5
+        xcenter 0.1 ycenter 0.5
     el"Тебя даже там не было!"
     show el shocked pioneer far with dspr:
-        xcentr 0.3 ycentr 0.5
+        xcenter 0.3 ycenter 0.5
     us"А вот и была. Я в кустах сидела."
     show us grin pioneer far with dspr:
-        xcentr 0.1 ycentr 0.5
+        xcenter 0.1 ycenter 0.5
     sl"Хватит вам! Прекратите!"
     show sl serious pioneer far with dissolve:
-        xcentr 0.7 ycentr 0.5
+        xcenter 0.7 ycenter 0.5
     th"Разговор был не на жизнь, а на смерть!"
     "Но тут в разговор вмешалась Ольга Дмитриевна."
     show el surprise pioneer far with dspr:
-        xcentr 0.3 ycentr 0.5
+        xcenter 0.3 ycenter 0.5
     show dv angry pioneer far with dspr:
-        xcentr 0.46 ycentr 0.5
-    show sl surprise pioneer far with dspr
-        xcentr 0.65 ycentr 0.5
+        xcenter 0.46 ycenter 0.5
+    show sl surprise pioneer far with dspr:
+        xcenter 0.65 ycenter 0.5
     show mt rage pioneer far with dspr:
-        xcentr 0.84 ycentr 0.5
+        xcenter 0.84 ycenter 0.5
     mt"Что вы тут ругаетесь?"
-    show sl angry pioneer far with dspr
-        xcentr 0.65 ycentr 0.5
+    show sl angry pioneer far with dspr:
+        xcenter 0.65 ycenter 0.5
     sl"Алиса Сыроежкину угрожает..."
     show dv rage pioneer far with dspr:
-        xcentr 0.46 ycentr 0.5
+        xcenter 0.46 ycenter 0.5
     dv"Ничего я не угрожаю, а предупреждаю!"
     "Алиса была агрессивно настроена."
-    show mt angry pioneer far with dspr
-        xcentr 0.65 ycentr 0.5
+    show mt angry pioneer far with dspr:
+        xcenter 0.84 ycenter 0.5
     mt"Ладно, успокоились и пошлите ужинать."
     stop music fadeout 3
 label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
@@ -1482,6 +1482,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     "Я вскочил с места и побежал до домика вожатой!"
     "Славя кричала что-то вслед, но мне было крайне не до этого."
     stop music fadeout 3
+    stop ambience fadeout 2
     scene ext_dining_hall_away_sunset with dissolve
     play music volnyuch fadeout 3
     "Выбежав..."
