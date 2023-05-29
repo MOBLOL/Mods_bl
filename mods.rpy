@@ -7,6 +7,7 @@ init:
     $ ar = Character (u'Арсений', color="#4fee62", what_color="E2C778")
     $ ap = Character (u'Пришелец', color="#00550a", what_color="E2C778") #- Арсений
     $ bp = Character (u'Пришелец', color="#00550a", what_color="E2C778") #- Влад
+    $ ss = Character (u'Система', color="#ffb3b3", what_color="FFB3B3")
 
 
     $ us_ochki = 0
@@ -23,6 +24,8 @@ init:
     image int_house_of_dv_night2 = "mods/Mods_A_D_V_A/img/int_house_of_dv_night2.jpg"
     image d2_mt_undressed_me = "mods/Mods_A_D_V_A/img/d2_mt_undressed_me.jpg"
     image d2_mt_undressed_2_me = "mods/Mods_A_D_V_A/img/d2_mt_undressed_2_me.jpg"
+
+    $ KinoBezdelnik = "mods/Mods_A_D_V_A/music/KinoBezdelnik.mp3"
 
 
 
@@ -1043,6 +1046,8 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_4:
     "Сказала она, заигранным голосом."
     sd"Да..."
     "Я поспешил удалится." 
+    th"Как-нибудь вырулим."
+    th"Надеюсь..."
     stop ambience
     jump Mods_Arseny_Danil_Vlad_Artem_day_2_7
 label Mods_Arseny_Danil_Vlad_Artem_day_2_5:
@@ -1114,6 +1119,8 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_5:
     sl"Ну удачт тебе!"
     sd"И тебе не хворать!"
     "Я вышел с пристани и покинул лодочки."
+    th"Как-нибудь вырулим."
+    th"Надеюсь..."
     stop music
     jump Mods_Arseny_Danil_Vlad_Artem_day_2_7
 label Mods_Arseny_Danil_Vlad_Artem_day_2_6:
@@ -1122,8 +1129,9 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_6:
     "Пойду пожалуй на сцену."
     "Ведь именно это место ассоциируется с Алисой."
     scene ext_stage_normal_day with dissolve
+    play music music_list["confession_oboe"] fadeout 3
     "Придя на сцену, я решил её обсмотреть"
-    th"Всегда было интересно что было за закулисами."
+    th"Всегда было интересно что было за кулисами."
     "При досканальном осмотре самой сцены и за её приделами, я ничего не обнаружил."
     th"Сцена как сцена..."
     th"Никакого реквизита, ничего."
@@ -1133,19 +1141,23 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_6:
     "Я был человек любопытный и даже умудрился заглянуть под сцену."
     "Там было темно, поэтому я ничего не разглядел."    
     "Я вылез из под сцены."
-    sd"Ну, раз уже я уже всё обсмотрел..."
+    sd"Ну, раз я уже всё обсмотрел..."
     "Я сел на лавочку, которая используется как трибуны."
     "И принялся ждать."
     "Заняв удобную мне позу, я от не чего делать начал фантазировать всё то, что первым придёт мне в голову."
     th"Главное долго не фантазировать, а то последним что придёт мне в голову - это солнечный удар."
     th"И так..."
     "Я глубоко вдохнул"
+    stop music
+    play music KinoBezdelnik fadeout 3
     "Закрыв глаза, у меня начала в голове играть музыка."
     #МУЗЫКА: https://ruo.morsmusic.org/track/120029
     "Кажется это была группа 'Кино'"
     "А песня..."
     "Не вспомню..."
-    th"Можете пропустить песню или послушать до конца."
+    ss"Можете пропустить песню или послушать до конца."
+    stop music fadeout 3
+    play music music_list["confession_oboe"] fadeout 3
     # КОНЕЦ!!!
     "Слова песни явно на что-то намекали..." 
     sd"Вот песни тогда были..."
@@ -1153,14 +1165,20 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_6:
     th"Ну в общем суть понята."
     "Насладившись русским роком, я надумал всё таки идти к Ольге Дмитриевне."
     "Я встал с лавочки и пошёл вон."
-    #Тут все выборы сходятся
-label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
-    #Если выбрать *Пойти к Ольге Дмитриевне.*
     th"Как-нибудь вырулим."
     th"Надеюсь..."
+    #Тут все выборы сходятся
+label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
+    play music music_list["feeling_good"]
+    #Если выбрать *Пойти к Ольге Дмитриевне.*
+    scene ext_square_day with dissolve
+    "Проходя мимо памятника Генды я в очередной раз думал чем он так знаменит."
+    "Людей на площади небыло совсем."
     "Я направился к домику вожатой."
+    scene ext_house_of_mt_day with dissolve
     "Возле домика никого не было."
     th"Может внутри?"
+    scene int_house_of_mt_day with dissolve
     "Я зашёл внутрь, но там также никого не оказалось..."
     th"Но сколько сейчас времени?"
     "Взглянув на часы, я увидел там 'До обеда ещё 10 минут!'"
@@ -1172,6 +1190,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     "Мне показалось рациональной идеей если я просто подожду до обеда."
     "..."
     "Время выходить!"
+    scene ext_house_of_mt_day with dissolve
     "Я оккуратно вышел из домика, опасаясь что кто-то меня увидит."
     "После чего отправился в столовую"
     "Подходя к столовой, как раз прозвенел громкоговоритель."
