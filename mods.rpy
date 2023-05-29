@@ -15,6 +15,8 @@ init:
     $ dv_ochki = 0
     $ mi_ochki = 0
     $ uv_ochki = 0
+
+    $ day_1_exit_door = 0
     
     $ daylock = "false"
 
@@ -580,10 +582,11 @@ label Mods_Arseny_Danil_Vlad_Artem_day_1_4:
     "Либо найти ключ и выйти как обычно, но потом закрыть дверь и подбросить ключ."
 menu:
     "Вылезти через форточку":
-        $ us_ocki = 0
         jump Mods_Arseny_Danil_Vlad_Artem_day_1_5
     "Выйти через дверь":
-        $ us_ochki +=1
+        day_1_exit_door = 1
+        dv_ochki += 1
+        us_ochki += 1
         jump Mods_Arseny_Danil_Vlad_Artem_day_1_6
      
 label Mods_Arseny_Danil_Vlad_Artem_day_1_5:
@@ -904,7 +907,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     "Она сидела за столом и что-то писала."
     "Её звали Виолой."
     sd"Здравствуйте!"
-    show cs smile stethoscope with dissolve
+    show cs smile stethoscope with dspr
     cs"Ну, здравствуй... пионер."
     "Сказала она, продолжая писать что-то."
     sd"Да..."
@@ -917,26 +920,26 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     cs"Ну что же тебе стоять?"
     sd"Хуже не будет."
     "Парировал я."
-    show cs normal stethoscope with dissolve
+    show cs normal stethoscope with dspr
     "Она сделала уважающую мимику лица."
     th"Вот так себя видёт альфа-самец."
     cs"Может болит что? Или что-то беспокоит?"
     sd"Да нет, пока огурчик."
     "\"Парировал \"х2."
     sd"И ещё когда подпишите, можете ручку ненадолго одолжить?"
-    show cs smile stethoscope with dissolve
+    show cs smile stethoscope with dspr
     cs"Да, конечно."
     th"Отлично!"
     "Я уже чувствовал вкус победы."
     "И тут я решил спросить:"
     sd"У вас случаем нету зелёного яблока?"
     "Спросил я на несколько дней вперёд."
-    show cs normal stethoscope with dissolve
+    show cs normal stethoscope with dspr
     cs"Нет, а что, голоден?"
     sd"Недостаток витаминов у меня."
     "Грустно сказал я и вздохнул."
     th"Ух..И мастер я заигрывать."
-    show cs smile stethoscope close with dissolve
+    show cs smile stethoscope close with dspr
     "Закончив писать бумажки медсестра пподошла ко мне."
     "Она протянула мне листок."
     cs"Меня если что Виолетта зовут, но ты можешь звать меня Виолой."
@@ -944,11 +947,12 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     sd"Хорошо."
     "Она протянула мне шариковую ручку."
     cs"И чтоб вернул потом."
-    show cs normal stethoscope close with dissolve
+    show cs normal stethoscope close with dspr
     "Сказала она угрожающим голосом."
     sd"Обязательно!"
     "Я развернулся и вышел из медпункта."
     play sound sfx_close_door_1
+    scene ext_aidpost_day with dissolve
     th"На что бы оперется?"
     "Решил писать на стенке медпункта."
     "Надеясь что никто меня не увидит."
@@ -959,21 +963,31 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     th"Не слишком ли быстро?"
     th"А если что-то заподозрит?"
     th"Тогда она точно посмотрит."
-#Выбор:
-   # *Гулять*     *Пойти к Ольге Дмитриевне*
- #Если выбрать *Гулять*
+menu:
+    "Гулять":
+        jump Mods_Arseny_Danil_Vlad_Artem_day_2_3
+    "Пойти к Ольге Дмитриевне":
+        jump Mods_Arseny_Danil_Vlad_Artem_day_2_7
+
+label Mods_Arseny_Danil_Vlad_Artem_day_2_3:
     th"Лучше время потяну."
     "Ну не буду же я сидеть без дела."
     "Да и до обеда ещё далеко."
-  #Карта:
+    
+    $ disable_all_zones()
+    $ set_zone("estrade", "Mods_Arseny_Danil_Vlad_Artem_day_2_4")
+    $ set_zone("boat_station", "Mods_Arseny_Danil_Vlad_Artem_day_2_5")
+
    #*Пляж*'+1'  *Лодочная станция*  *Сцена*
-   #Если выбрать *Пляж*:
+label Mods_Arseny_Danil_Vlad_Artem_day_2_4:
+    dv_ochki += 1
+    scene ext_aidpost_day
     "Я решли направится на пляж."
     "Освежится, позагарать."
     "Но купатся я не собирался."
     "Иначе я просто не успею высохнуть."
-    scene ext_beach_day
-    play ambience ambience_lake_shore_day
+    scene ext_beach_day with dissolve
+    play ambience ambience_lake_shore_day fadeout 5
     "Когда я пришёл на пляж, я увидел нескольких пионеров младше меня."
     "Которые резвились в воде и играли с мячом."
     "Подойдя к воде, я окунул палец руки в воду."
@@ -996,15 +1010,18 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     dv"Ты чё там делаешь?"
     "Сзади послышался крик Алисы в мою сторону."
     sd"А...Я.."
+    show dv laugh pioneer2 far with dissolve
     dv"Хочешь искупатся чтоли?"
     "Я решил разговаривать более серьёзно."
     th"Я же не зря кадрил медсестру."
     sd"Просто умыться пришёл."
+    show dv smile pioneer2 far with dissolve
     dv"А..Ну раз умыться."
-    dv"Ты кстати хорошо с одеждой придумал..." #- путь открывается, если в первом дне выбрать *Выйти через дверь*
-    th"Она откуда-то узнала, что это был я."
-    th"Я был насторожен."
-    dv"Просто в следующий раз, когда будешь бросать ключ, делай это тише."
+    if day_1_exit_door == 1:
+        dv"Ты кстати хорошо с одеждой придумал..." #- путь открывается, если в первом дне выбрать *Выйти через дверь*
+        th"Она откуда-то узнала, что это был я."
+        th"Я был насторожен."
+        dv"Просто в следующий раз, когда будешь бросать ключ, делай это тише."
     "Она начала приближатся к воде."
     sd"Только не мочить!"
     dv"Я тоже умыться хочу."
@@ -1022,8 +1039,10 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     dv"Иди, кто ж тебя держит."
     "Сказала она, заигранным голосом."
     sd"Да..."
-    "Я поспешил удалится."
-    stop music
+    "Я поспешил удалится." 
+    stop ambience
+    jump Mods_Arseny_Danil_Vlad_Artem_day_2_7
+label Mods_Arseny_Danil_Vlad_Artem_day_2_5:
     #Если выбрать *Лодочная станция*:
     "Я решли провести время у лодочек."
     "Посидеть на пристани, подумать о жизни..."
@@ -1082,7 +1101,9 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     sd"И тебе не хворать!"
     "Я вышел с пристани и покинул лодочки."
     stop music
-   #Eсли выбрать *Сцена*:
+    jump Mods_Arseny_Danil_Vlad_Artem_day_2_7
+label Mods_Arseny_Danil_Vlad_Artem_day_2_6:
+    #Eсли выбрать *Сцена*:
     "Пойду пожалуй на сцену."
     "Ведь именно это место ассоциируется с Алисой."
     scene ext_stage_normal_day
@@ -1110,15 +1131,16 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_2:
     "А песня..."
     "Не вспомню..."
     th"Можете пропустить песню или послушать до конца."
-     # КАНЕЦ!!!
+    # КАНЕЦ!!!
     "Слова песни явно на что-то намекали..." 
     sd"Вот песни тогда были..."
     th"Точнее сейчас..."
     th"Ну в общем суть понята."
     "Насладившись русским роком, я надумал всё таки идти к Ольге Дмитриевне."
     "Я встал с лавочки и пошёл вон."
-   #Тут все выборы сходятся.
-  #Если выбрать *Пойти к Ольге Дмитриевне.*
+    #Тут все выборы сходятся
+label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
+    #Если выбрать *Пойти к Ольге Дмитриевне.*
     th"Как-нибудь вырулим."
     th"Надеюсь..."
     "Я направился к домику вожатой."
