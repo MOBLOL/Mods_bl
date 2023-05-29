@@ -584,9 +584,9 @@ menu:
     "Вылезти через форточку":
         jump Mods_Arseny_Danil_Vlad_Artem_day_1_5
     "Выйти через дверь":
-        day_1_exit_door = 1
-        dv_ochki += 1
-        us_ochki += 1
+        $ day_1_exit_door = 1
+        $ dv_ochki += 1
+        $ us_ochki += 1
         jump Mods_Arseny_Danil_Vlad_Artem_day_1_6
      
 label Mods_Arseny_Danil_Vlad_Artem_day_1_5:
@@ -978,9 +978,11 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_3:
     $ set_zone("estrade", "Mods_Arseny_Danil_Vlad_Artem_day_2_4")
     $ set_zone("boat_station", "Mods_Arseny_Danil_Vlad_Artem_day_2_5")
 
+    $ show_map()
+
    #*Пляж*'+1'  *Лодочная станция*  *Сцена*
 label Mods_Arseny_Danil_Vlad_Artem_day_2_4:
-    dv_ochki += 1
+    $ dv_ochki += 1
     scene ext_aidpost_day
     "Я решли направится на пляж."
     "Освежится, позагарать."
@@ -1048,7 +1050,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_5:
     "Посидеть на пристани, подумать о жизни..."
     "Хотя..."
     "Просто подумать."  
-    scene ext_boathouse_day
+    scene ext_boathouse_day with dissolve
     play ambience ambience_boat_station_day
     "Придя к лодочной станции, я присел на пристань..."
     th"Как и грозился..."
@@ -1103,10 +1105,11 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_5:
     stop music
     jump Mods_Arseny_Danil_Vlad_Artem_day_2_7
 label Mods_Arseny_Danil_Vlad_Artem_day_2_6:
+    scene ext_aidpost_day
     #Eсли выбрать *Сцена*:
     "Пойду пожалуй на сцену."
     "Ведь именно это место ассоциируется с Алисой."
-    scene ext_stage_normal_day
+    scene ext_stage_normal_day with dissolve
     "Придя на сцену, я решил её обсмотреть"
     th"Всегда было интересно что было за закулисами."
     "При досканальном осмотре самой сцены и за её приделами, я ничего не обнаружил."
