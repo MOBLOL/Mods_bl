@@ -975,7 +975,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_3:
     "Да и до обеда ещё далеко."
     
     $ disable_all_zones()
-    $ set_zone("estrade", "Mods_Arseny_Danil_Vlad_Artem_day_2_4")
+    $ set_zone("beach", "Mods_Arseny_Danil_Vlad_Artem_day_2_4")
     $ set_zone("boat_station", "Mods_Arseny_Danil_Vlad_Artem_day_2_5")
 
     $ show_map()
@@ -1038,6 +1038,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_4:
     sd"Знаешь..Мне.."
     sd"Мне надо идти..."
     "Сказал я, заикаясь."
+    show dv normal pioneer2 far with dspr
     dv"Иди, кто ж тебя держит."
     "Сказала она, заигранным голосом."
     sd"Да..."
@@ -1045,6 +1046,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_4:
     stop ambience
     jump Mods_Arseny_Danil_Vlad_Artem_day_2_7
 label Mods_Arseny_Danil_Vlad_Artem_day_2_5:
+    scene ext_aidpost_day
     #Если выбрать *Лодочная станция*:
     "Я решли провести время у лодочек."
     "Посидеть на пристани, подумать о жизни..."
@@ -1057,6 +1059,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_5:
     "Уставился вдаль..."
     "Рассматрев бескрайнее море..Или это озеро?"
     "Я погрузился в себя..."
+    show blink
     "Закрыл глаза..."
     "И..."
     "Просто начал мечтать..."
@@ -1078,12 +1081,18 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_5:
     "Я специально не закрывался от солнца."
     sl"Данила, привет!"
     "Я испугался и открыл глаза."
+    hide blink
+    show unblink
+    show sl smile2 swim 
     sd"А-А-А-А!"
+    hide unblink
     "Я за малым не свалился в воду."
     sd"Предупреждай хотя бы."
+    show sl shy swim with dspr
     sl"Прости..."
     "Взглянув на неё, я увидел что она была в купальнике..."
     th"На ней всё смотрится отлично..."
+    show sl surprise swim with dspr
     sl"Данил?"
     "Она вернула меня в реальность."
     sl"Всё хорошо? Ты куда смотришь?"
@@ -1092,13 +1101,16 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_5:
     "Она оглядела себя."
     sd"Не..Нет,нет ты что, всё отлично."
     sd"Просто я задумался."
+    show sl smile2 swim with dspr
     sl"А..Ну тогда ладно."
+    show sl sad swim with dspr
     sl"А ты чего здесь сидишь?"
     sl"Тебе разве не надо обходной подписать?"
     sd"Так он уже подписанный"
     "Ответил я."
     sl"Быстро ты..."
     sd"Да, вот щас до Ольги Дмитриевны пойду."
+    show sl smile2 swim with dspr
     sl"Ну удачт тебе!"
     sd"И тебе не хворать!"
     "Я вышел с пристани и покинул лодочки."
@@ -1134,7 +1146,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_6:
     "А песня..."
     "Не вспомню..."
     th"Можете пропустить песню или послушать до конца."
-    # КАНЕЦ!!!
+    # КОНЕЦ!!!
     "Слова песни явно на что-то намекали..." 
     sd"Вот песни тогда были..."
     th"Точнее сейчас..."
