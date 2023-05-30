@@ -5,9 +5,10 @@ init:
     $ sd = Character (u'Данил', color="#FFAA28", what_color="E2C778")
     $ vl = Character (u'Влад', color="#5181fc", what_color="E2C778")
     $ ar = Character (u'Арсений', color="#4fee62", what_color="E2C778")
-    $ ap = Character (u'Пришелец', color="#00550a", what_color="E2C778") #- Арсений
-    $ bp = Character (u'Пришелец', color="#00550a", what_color="E2C778") #- Влад
+    $ ap = Character (u'Пришелец', color="#4fee62", what_color="E2C778") #- Арсений
+    $ bp = Character (u'Пришелец', color="#5181fc", what_color="E2C778") #- Влад
     $ ss = Character (u'Система', color="#ffb3b3", what_color="FFB3B3")
+    $ vlar = Character (u'Влад и Арсений', color="#50B8AF", what_color="FFB3B3")
 
 
     $ us_ochki = 0
@@ -30,6 +31,30 @@ init:
     $ KinoBezdelnik = "mods/Mods_A_D_V_A/music/KinoBezdelnik.mp3"
     $ Zvezda = "mods/Mods_A_D_V_A/music/Zvezda.mp3"
     $ volnyuch = "mods/Mods_A_D_V_A/music/volnyuch.mp3"
+
+    image vl angry = "mods/Mods_A_D_V_A/img/boy a_casual_angry.png"
+    image vl confused = "mods/Mods_A_D_V_A/img/boy a_casual_confused.png"
+    image vl cry = "mods/Mods_A_D_V_A/img/boy a_casual_cry.png"
+    image vl flustered = "mods/Mods_A_D_V_A/img/boy a_casual_flustered.png"
+    image vl happy = "mods/Mods_A_D_V_A/img/boy a_casual_happy.png"
+    image vl nervous = "mods/Mods_A_D_V_A/img/boy a_casual_nervous.png"
+    image vl normal = "mods/Mods_A_D_V_A/img/boy a_casual_normal.png"
+    image vl sad = "mods/Mods_A_D_V_A/img/boy a_casual_sad.png"
+    image vl shocked = "mods/Mods_A_D_V_A/img/boy a_casual_shocked.png"
+
+    image ar angry = "mods/Mods_A_D_V_A/img/e1-angry.png"
+    image ar maybe = "mods/Mods_A_D_V_A/img/e1-maybe-not.png"
+    image ar normal = "mods/Mods_A_D_V_A/img/e1-normal.png"
+    image ar oops = "mods/Mods_A_D_V_A/img/e1-oops.png"
+    image ar smile = "mods/Mods_A_D_V_A/img/e1-smile.png"
+    image ar smile2 = "mods/Mods_A_D_V_A/img/e1-smile2.png"
+    image ar surprised = "mods/Mods_A_D_V_A/img/e1-surprised.png"
+    image ar tsundere = "mods/Mods_A_D_V_A/img/e1-tsundere.png"
+
+    image ar siluet = "mods/Mods_A_D_V_A/img/e1-smile_siluet.png"
+    image vl siluet = "mods/Mods_A_D_V_A/img/boy a_casual_normal_siluet.png"
+
+
 
 
 
@@ -1500,47 +1525,60 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     scene ext_house_of_mt_sunset with dissolve
     "Подбегая к домику уже виднелись какие-то не знакомые мне силуэты."
     "Искра надежды освежила меня."
+    show ar siluet at cleft with dissolve 
+    show vl siluet at cright with dissolve
     "Я подбежал к домику, возле которого стояли два..."
     "Человека?"
-    "Они были в тёплых зимних вещах."
+    "Они были одеты в новых, современных вещах."
     "Прям как я..."
     th"Прям как я."
     "Моей радости не было придела."
     "Но всё же я собрался с мыслями и начал диалог с пришельцами."
     sd"Привет пионеры!"
-
+    show ar smile with dissolve
     "Они обернулись и показали свои лица..."
     bp"Здравствуй!"
     ap"Здравствуйте!"
     "Я еле-еле сдерживал слёзы."
+    hide ext_house_of_mt_sunset with dissolve
       #Тёмный экран.
     th"Вот они..."
     th"Посланники..."
     th"Присланные сюда на помощь мне..."
     th"Либо они и есть мои ответы."
     th"Либо они помогут их найти."
+    stop music fadeout 3
+    scene ext_house_of_mt_sunset with dissolve
+    play music music_list["eat_some_trouble"] fadeout 3
      #Конец волнующей музыке
      #Конец тёмного экрана
     "Я вздохнул."
     sd"Вы здесь первый раз?"
     th"Очевидно что - ДА!"
     "Но разговор надо было как-то продолжить."
+    show vl nervous with dspr
     bp"Да, есть такое..."
+    show ar surprised with dspr
     ap"Да."
     "Их ответы как и ожидалось были положительными."
-    sd"А вы чего в зимних куртках? Лето ведь!"
+    sd"А вы чего в жаркой одежде? Лето ведь!"
     "С насмешкой я задал им вопрос."
+    show ar oops with dspr
     ap"Мы просто..."
     "Они явно не знали что ответить."
+    show vl sad with dspr
     bp"Мы просто думали что здесь холодно."
     bp"Посмотрели погоду, а там передают минус 30"
     "Уверенно сказал мне доложил один из пришельцев."
     th"Видимо он ещё не знает куда попал."
     th"И не знает что словосочетание <Посмотрели погоду> здесь не естественно."
     sd"Вас как зовут?"
+    show ar smile2 with dspr
     ap"Арсений!"
     sd"Приятно познакомиться, Данил."
+    show ar maybe with dspr
     ar"Приятно."
+    show bp shocked with dspr
     bp"Ты случаем не знаешь где вожатая?"
     "Выдал мне последний пришелец."
     "Видимо он хотел быстрее избежать разговора."
@@ -1553,15 +1591,24 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     "Испугавший меня своим внезапным вступлением."
     sd"А А А!"
     "Я испуганно оглянулся назад."
+    show ar normal at left with dspr
+    show vl sad at cleft with dspr
+    show mt smile pioneer far at cright with dissolve
+    show sl smile pioneer far at right with dissolve
     "Там как раз была Славя."
     "И Ольга Дмитриевна."
     mt"Здравствуйте пионеры!"
-    bp"Здравствуйте!"
+    vlar"Здравствуйте!"
     "Ответили они хором."
+    show mt normal pioneer far at cright with dspr
     mt"Я вожатая этого лагеря."
     mt"Меня зовут Ольга Дмитриевна."
     mt"Пойдёмте, я дам вам пионерскую форму."
+    hide mt normal pioneer with dspr
+    hide ar normal with dspr
+    hide vl sad with dspr
     "Они пошли в домик вожатой."
+    show sl sad pioneer far with ds 
     sl"Они тебя обижали?"
     th"Меня?"
     th"Кто-то?"
@@ -1569,6 +1616,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     th"Да я после таскания сахара каждый цикл, сам кого хочешь обижу."
     sd"Нет, мы просто познакомились."
     sl"Ну ладно, мы там собираемся в карты играть..."
+    show sl serious pioneer far with dspr
     "Славя была чем-то насторожена."
     "Рассержена..."
     "Растроена?"
