@@ -10,6 +10,8 @@ init:
     $ ss = Character (u'Система', color="#ffb3b3", what_color="FFB3B3")
     $ vlar = Character (u'Влад и Арсений', color="#50B8AF", what_color="FFB3B3")
 
+    $ d2_gave_keys = False
+    $ d2_cardgame_block_rollback = False
 
     $ us_ochki = 0
     $ un_ochki = 0
@@ -32,7 +34,7 @@ init:
     $ Zvezda = "mods/Mods_A_D_V_A/music/Zvezda.mp3"
     $ volnyuch = "mods/Mods_A_D_V_A/music/volnyuch.mp3"
 
-    image vl angry = "mods/Mods_A_D_V_A/img/boy a_casual_angry.png"
+    image vl angry = "mods/Mods_A_D_V_A/img/название картинки  .png"
     image vl confused = "mods/Mods_A_D_V_A/img/boy a_casual_confused.png"
     image vl cry = "mods/Mods_A_D_V_A/img/boy a_casual_cry.png"
     image vl flustered = "mods/Mods_A_D_V_A/img/boy a_casual_flustered.png"
@@ -42,16 +44,16 @@ init:
     image vl sad = "mods/Mods_A_D_V_A/img/boy a_casual_sad.png"
     image vl shocked = "mods/Mods_A_D_V_A/img/boy a_casual_shocked.png"
 
-    image ar angry = "mods/Mods_A_D_V_A/img/e1-angry.png"
-    image ar maybe = "mods/Mods_A_D_V_A/img/e1-maybe-not.png"
-    image ar normal = "mods/Mods_A_D_V_A/img/e1-normal.png"
-    image ar oops = "mods/Mods_A_D_V_A/img/e1-oops.png"
-    image ar smile = "mods/Mods_A_D_V_A/img/e1-smile.png"
-    image ar smile2 = "mods/Mods_A_D_V_A/img/e1-smile2.png"
-    image ar surprised = "mods/Mods_A_D_V_A/img/e1-surprised.png"
-    image ar tsundere = "mods/Mods_A_D_V_A/img/e1-tsundere.png"
+    image ar angry = "mods/Mods_A_D_V_A/img/ar1.png"
+    image ar maybe = "mods/Mods_A_D_V_A/img/ar2.png"
+    image ar normal = "mods/Mods_A_D_V_A/img/ar4.png"
+    image ar oops = "mods/Mods_A_D_V_A/img/ar5.png"
+    image ar smile = "mods/Mods_A_D_V_A/img/ar6.png"
+    image ar smile2 = "mods/Mods_A_D_V_A/imgar7.png"
+    image ar surprised = "mods/Mods_A_D_V_A/img/ar8.png"
+    image ar tsundere = "mods/Mods_A_D_V_A/img/ar9.png"
 
-    image ar siluet = "mods/Mods_A_D_V_A/img/e1-smile_siluet.png"
+    image ar siluet = "mods/Mods_A_D_V_A/img/ar3.png"
     image vl siluet = "mods/Mods_A_D_V_A/img/boy a_casual_normal_siluet.png"
 
 
@@ -1342,6 +1344,10 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     play music Zvezda
     #https://ruo.morsmusic.org/track/214w
     ss"Вы можете пропустить песню или дослушать до конца."
+    menu:
+        "пропустить":
+            jump Zvezda_music
+label Zvezda_music:
     #КАНЕЦ!!!
     stop music fadeout 3
     play music music_list["everyday_theme"] fadeout 3
@@ -1366,7 +1372,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     show mt normal pioneer far at right with dissolve
     "Подойдя в зону обнаружение вожатой"
     "Я протянул ей листок с подделаными подписями."
-    show mt smile pioneer at center with dspr
+    show mt smile pioneer at center with dissolve
     sd"Сделано!"
     "Она не читая обходной, сунула листок в карман"
     th"Есть!"
@@ -1381,8 +1387,8 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
     show mt angry pioneer with dspr
     mt"Ну смотри! Скоро конец смены. Времени мало!"
     "Подметила она."
-    mt"Ладно, пора уже и на ужин идти."
     show mt smile pioneer with dspr
+    mt"Ладно, пора уже и на ужин идти."
     th"Наконец-то!"
     scene ext_square_sunset with dissolve
     "После этих слов, я вместе с вожатой направились к столовой."
@@ -1403,15 +1409,15 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_7:
         xcenter 0.3 ycenter 0.5
     el"Не называл я тебя так!"
     show dv rage pioneer far with dspr 
-    us"Называл, Называл! Я всё слышала!"
     show us laugh pioneer far with dissolve:
         xcenter 0.1 ycenter 0.5
-    el"Тебя даже там не было!"
+    us"Называл, Называл! Я всё слышала!"
     show el shocked pioneer far with dspr:
         xcenter 0.3 ycenter 0.5
-    us"А вот и была. Я в кустах сидела."
+    el"Тебя даже там не было!"
     show us grin pioneer far with dspr:
         xcenter 0.1 ycenter 0.5
+    us"А вот и была. Я в кустах сидела."
     sl"Хватит вам! Прекратите!"
     show sl serious pioneer far with dissolve:
         xcenter 0.7 ycenter 0.5
@@ -1525,8 +1531,10 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     scene ext_house_of_mt_sunset with dissolve
     "Подбегая к домику уже виднелись какие-то не знакомые мне силуэты."
     "Искра надежды освежила меня."
-    show ar siluet at cleft with dissolve 
-    show vl siluet at cright with dissolve
+    show ar siluet close with dissolve:
+        xcenter 0.15 ycenter 0.65
+    show vl siluet close with dissolve:
+        xcenter 0.4 ycenter 0.6
     "Я подбежал к домику, возле которого стояли два..."
     "Человека?"
     "Они были одеты в новых, современных вещах."
@@ -1535,12 +1543,16 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     "Моей радости не было придела."
     "Но всё же я собрался с мыслями и начал диалог с пришельцами."
     sd"Привет пионеры!"
-    show ar smile with dissolve
+    show vl sad with dissolve
+    show ar normal with dissolve
     "Они обернулись и показали свои лица..."
     bp"Здравствуй!"
     ap"Здравствуйте!"
     "Я еле-еле сдерживал слёзы."
-    hide ext_house_of_mt_sunset with dissolve
+    hide vl sad with dspr
+    hide ar normal with dspr
+    hide ext_house_of_mt_sunset with dspr
+label  Mods_Arseny_Danil_Vlad_Artem_day_2_9:
       #Тёмный экран.
     th"Вот они..."
     th"Посланники..."
@@ -1552,6 +1564,12 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     play music music_list["eat_some_trouble"] fadeout 3
      #Конец волнующей музыке
      #Конец тёмного экрана
+    scene ext_house_of_mt_sunset with dissolve
+
+    show ar smile with dspr:
+        xcenter 0.15 ycenter 0.65
+    show vl normal with dspr:
+        xcenter 0.4 ycenter 0.6
     "Я вздохнул."
     sd"Вы здесь первый раз?"
     th"Очевидно что - ДА!"
@@ -1561,14 +1579,15 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     show ar surprised with dspr
     ap"Да."
     "Их ответы как и ожидалось были положительными."
-    sd"А вы чего в жаркой одежде? Лето ведь!"
-    "С насмешкой я задал им вопрос."
+    sd"А ты чего в такой жаркой одежде? Лето ведь!"
+    "С насмешкой я задал ему вопрос."
     show ar oops with dspr
-    ap"Мы просто..."
-    "Они явно не знали что ответить."
+    ap"Я просто..."
+    "Он явно не знал что ответить."
     show vl sad with dspr
-    bp"Мы просто думали что здесь холодно."
-    bp"Посмотрели погоду, а там передают минус 30"
+    show ar normal with dspr
+    ap"Я просто думал что здесь холодно."
+    ap"Посмотрел погоду, а там передают минус 30"
     "Уверенно сказал мне доложил один из пришельцев."
     th"Видимо он ещё не знает куда попал."
     th"И не знает что словосочетание <Посмотрели погоду> здесь не естественно."
@@ -1591,8 +1610,8 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     "Испугавший меня своим внезапным вступлением."
     sd"А А А!"
     "Я испуганно оглянулся назад."
-    show ar normal at left with dspr
-    show vl sad at cleft with dspr
+    show ar normal with dspr
+    show vl sad with dspr
     show mt smile pioneer far at cright with dissolve
     show sl smile pioneer far at right with dissolve
     "Там как раз была Славя."
@@ -1608,7 +1627,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     hide ar normal with dspr
     hide vl sad with dspr
     "Они пошли в домик вожатой."
-    show sl sad pioneer far with ds 
+    show sl sad pioneer far at center with dspr
     sl"Они тебя обижали?"
     th"Меня?"
     th"Кто-то?"
@@ -1624,53 +1643,66 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     "Она им явно не доверяла."
     th"Но почему?"
     "В этом я был не полностью уверен."
-    "Но она явно чем-то была не довольна."
+    "Но она явно чем-то была недовольна."
     th"Она их только первый раз увидела."
     th"Может они ей как-то нагрубили?"
     "Все эти вопросы лезли в мою голову."
     "Ведь Славя не обижается на человека с первого взгляда."
     "Чтобы она обиделась надо постаратся."
+    show sl normal pioneer with dspr
     sl"Электроник игру придумал."
     sl"Сказал будет что-то типо турнира."
     sl"Пойдёшь?"
     th"Ну, делать мне сейчас всё равно нечего."
     sd"Да, конечно."
+    show sl smile2 pioneer with dspr
     sl"Супер, я сейчас за картами иду."
     "Славе стало лучше."
     "На её лице появилась улыбка."
+    show sl happy pioneer with dspr
     sl"Иди пока в столовую, там тебя все ждут."
     "Неожиданно."
     sd"Ладно, до встречи!"
     "Славя помахала мне рукой и пошла дальше."
     "..."
+    scene ext_dining_hall_away_sunset with dissolve
     "Через некоторое время, я уже стоял возле столовой."
     "На пути никого не виднелось."
     "Поэтому никто не сможет мне помешать спокойно дойти до столовой."
     "..."
+    scene int_dining_hall_sunset with dissolve
     "Я вошёл в столовую и увидел толпу."
+    show el laugh pioneer far with dissolve
     "Во главе которой был Электроник."
     "Он видимо что-то рассказывал раз уж махает руками."
+    show el laugh pioneer with dspr
     "Я подошёл ближе."
-    el"...а пока ждём пока Славя принесёт карты!"
+    el"...а сейчас ждём пока Славя принесёт карты!"
     th"Блин!"
     th"Не успел."
     th"Ну он же будет повторять правила для опоздавших."
     th"Он же будет?"
     "Поживём - увидим."
+    show sl smile pioneer ar left with dissolve
     "Через некоторое время пришла Славя."
     "А за ней и вожатая."
     "И передала карты Электронику."
+    show el smile pioneer with dspr
     el"Спасибо!"
+    hide sl happy pioneer with dspr
     us"Когда начнём?"
     "Откуда-то крикнула Ульяна."
+    show el normal pioneer with dspr
     el"Ещё не все собрались."
     "Про призы я решил не спрашивать."    
     us"А призы будут?"
     "Но Ульянка решила быстрее меня."
+    show us grin pioneer at left with dissolve
     "Тут уже она уже прыгает возле организатора."
     th"Быстрая бестия..."
     us"Призы! Призы!"    
     "Ульяна засыпала Электроника вопросами."
+    show us surp1 pioneer with dspr
     us"А награды?"
     us"Может будут конфеты?"
     us"Барбарисы или шоколадные?"
@@ -1678,22 +1710,29 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     th"Ужас, что за дети пошли?"
     th"Были..."
     th"Гиперактивные какие-то."
+    show el sad pioneer with dspr
+    show us angry pioneer with dspr
     el"Ну... Я не знаю. Не от меня зависит."
     "Он обречённо развёл руками"
-    "Ульяна надула губки ткнула Электроника в бок и в неизвестном направлении убежала из столовой со скоростью..."
+    hide us angry pioneer with dspr
+    "Ульяна надула губки ткнула Электроника в бок и в неизвестном направлении, убежала из столовой со скоростью..."
     "Что-то возле скорости света."
     sd"А правила ты когда объяснишь?"
+    show el normal pioneer with dspr
     el"Подожди, ещё Жени нету."
     "Ждать, что в этот раз отправят кого-то другого, я надеяться не стал."
     "Я устало вздохнул."
     sd"Ну, давай тогда я за ней схожу."
+    show el smile pioneer with dspr
     el"Давай, она наверное где-то возле библеотеки."
     th"И без вас знаю где она."
-    "Я покинул столовую."
-    "И направился на площадь."
+    "Я покинул столовую, и направился на площадь."
+    scene ext_square_sunset with dissolve
     "..."
+    show mz normal glasses pioneer far with dspr
     "Как и ожидалось Женя была там."
     sd"Ты чего сидишь? Пошли в карты играть, тебя там все ждут."
+    show mz angry glasses pioneer far with dspr
     mz"Не хочу."
     "Она отвернулась."
     mz"Не хочу и всё!"
@@ -1703,17 +1742,25 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     sd"Не переживай, просто поиграем и всё."
     sd"Или ты умеешь только то, о чём читала?"
     "Женя хихикнула."
+    show mz bukal glasses pioneer far with dspr
     mz"Так что, все только меня ждут?"
     th"До неё долго доходит..."
     sd"Да."
-    mz"Ну ладно, пошли."    
+    mz"Ну ладно, пошли."
+    scene int_dining_hall_sunset with dissolve
     "Через минуту мы были уже в столовой."
     "Все внимательно смотрели на Электроника."
+    show el grin pioneer far with dissolve
     el"Итак!"
     "Тот начал объяснять правила его карточной игры."
-    # Выбор:
-    #*Пропустить*    *Прослушать*
+menu:
+    "Пропустить":
+        jump day2_cardgame
+    "Прослушать":
+        jump Mods_Arseny_Danil_Vlad_Artem_day_2_10
+
    #Если выбрать *Прослушать*
+label Mods_Arseny_Danil_Vlad_Artem_day_2_10:
     el"Каждый тур состоит из одной игры."
     el"В случае ничьей будет переигровка."
     el"После этого проигравший выбывает, и начинается следующий тур."
@@ -1738,13 +1785,520 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     sd"Не переживай, я тоже правила понял."
     th"Почему <тоже>?"
     "Ладно."
-    # Начало игры, без тренировки.
-    # Если проиграть Лене:
+    
+label day2_cardgame:
+
+    $ d2_cardgame_block_rollback = True
+
+    "Наконец Электроник начал объяснять правила."
+
+    if persistent.CardsDemo:
+        menu:
+            "Пройти обучение":
+                jump demo_play
+            "Пропустить обучение":
+                jump day_2_cards_continue
+
+label demo_play:
+    python:
+        dialogs = {
+                        (3,"rival_select","call"): "demo_play_intro",
+                        (3,"me_defend_1","call"):  "demo_play_me_defend_1",
+                        (3,"me_select_1","call"):  "demo_play_me_select_1",
+                        (3,"rival_defend","call"): "demo_play_rival_defend",
+                        (2,"rival_select","jump"): "demo_play_after_loop",
+                    }
+        INVISIBLE = False
+        VISIBLE = False
+        generate_cards("bg hall",dialogs)
+        rival = CardGameRivalUn(un_avatar_set, translation["test_game"][_preferences.language])
+    jump cards_gameloop
+
+label demo_play_intro:
+    show el normal pioneer at center  with dissolve
+    $ show_cards()
+    el "Посмотрите на карты внимательно."
+    $ show_cards()
+    el "Перед вами их ровно шесть!"
+    $ show_cards()
+    th "Надеюсь, считать здесь все умеют."
+    $ show_cards()
+    el "Теперь можете их открыть."
+
+    $ VISIBLE = True
+    $ show_cards()
+    "Когда все посмотрели свои карты, Электроник продолжил."
+    $ show_cards()
+    el "Правила такие же, как в покере."
+    $ show_cards()
+    el "Думаю, все играть умеют?"
+    $ show_cards()
+    "Я-то умел, но вот в остальных не был уверен."
+    $ show_cards()
+    el "Сначала идёт самая старшая карта, потом пара, потом две пары, потом тройка...{w} Ну и так далее."
+    $ show_cards()
+    el "Первым ходом вы выбираете карту, которую хотите забрать у противника."
+    $ show_cards()
+    el "У него же в свою очередь есть возможность поменять карты местами два раза."
+    $ show_cards()
+    el "Но можно и не менять, если собираются забрать ненужную карту."
+    $ show_cards()
+    el "Но учтите – противник видит, какие карты вы меняете местами."
+    $ show_cards()
+    el "Далее соперник забирает у вас одну карту."
+    $ show_cards()
+    el "Ну, и так далее – думаю, всё понятно."
+    $ show_cards()
+    "Мне было совершенно ничего не понятно."
+    $ show_cards()
+    us "Эй, ты, Эйнштейн недоделанный!"
+    $ show_cards()
+    "Послышался издалека голос Ульянки."
+    $ show_cards()
+    us "Ничегошеньки не понятно!"
+    $ show_cards()
+    el "По ходу разберёшься."
+    hide el  with dissolve
+    $ show_cards()
+    "Электроник отошёл к столу со схемой, оставив Ульяну злиться в одиночестве."
+    $ show_cards()
+    sd"Ходи первая."
+    $ show_cards()
+    "Я надеялся, что быстро смогу вникнуть в игру."
+    $ show_cards()
+    "И Лена, смутившись ещё больше, чем обычно, потянулась к моим картам."
+    window hide
+    return
+
+
+
+label demo_play_me_defend_1:
+    $ show_cards()
+    window show
+    "Но на середине стола её рука застыла."
+    $ show_cards()
+    un "Ты будешь..."
+    $ show_cards()
+    th "Точно! Я же должен защищать свою карту!"
+    $ show_cards()
+    th "И что там говорил Электроник..."
+    $ show_cards()
+    "Чтобы попытаться запутать соперника, можно поменять карты местами.{w} И так два раза."
+    $ show_cards()
+    "А можно и не менять."
+    $ show_cards()
+    "Защищать мне эту карту или нет?"
+    $ show_cards()
+    "К тому же я могу сразу согласиться и отдать ей карту, которую она выбрала."
+    $ show_cards()
+    "А Лена может изменить свой выбор, взяв другую карту.{w} А может и не менять."
+    window hide
+    return
+
+
+
+label demo_play_me_select_1:
+
+    window show
+    "Понемногу всё становилось понятно!{w} Или хотя бы понятнее..."
+    $ show_cards()
+    sd"Теперь моя очередь."
+    $ show_cards()
+    "Я могу вернуть карту, которую она забрала, или выбрать любую другую."
+    window hide
+    return
+
+
+
+label demo_play_rival_defend:
+    $ show_cards()
+    window show
+    "Лена может попробовать защитить свою карту."
+    $ show_cards()
+    "Но если я буду внимателен, то всё равно возьму ту, что выбрал с самого начала."
+    window hide
+    return
+
+
+
+label demo_play_after_loop:
+    $ show_cards()
+    window show
+    "Получилось!"
+    window hide
+
+    $ ui.jumpsoutofcontext("day_2_cards_continue")
+
+
+
+label day_2_cards_continue:
+
+    $ renpy.block_rollback()
+
+    $ persistent.CardsDemo = True
+
+    $ persistent.sprite_time = "sunset"
+    scene bg int_dining_hall_sunset 
+    with dissolve
+
+    window show
+    "Электроник, до этого лишь молча наблюдавший за игрой, удовлетворённо кивнул."
+    "Похоже, теперь мы действительно немного разобрались, что к чему."
+    show el normal pioneer at center  with dissolve
+    el "Итак, во время игры противники три раза обмениваются картами, а потом вскрываются."
+    "У меня вырвался невольный смешок от слова «вскрываются»."
+    show el angry pioneer at center  with dspr
+    el "Что смешного?"
+    sd"Нет, ничего."
+    "Сдерживаясь из последних сил, чтобы не прыснуть, ответил я."
+    "Он пристально посмотрел на меня и продолжил."
+    show el normal pioneer at center  with dspr
+    el "И мы смотрим, у кого лучше карты."
+    hide el  with dissolve
+    "Электроник вернулся к своему ватману."
+    window hide
+
+    if persistent.CardsWon3:
+        menu:
+            "Играть турнир":
+                jump un_play
+            "Пропустить турнир (выиграть у Алисы)":
+                jump dv_play_win
+            "Пропустить турнир (проиграть Алисе)":
+                jump dv_play_fail
+            "Пропустить турнир (проиграть Ульяне)":
+                jump us_play_fail
+            "Пропустить турнир (проиграть Лене)":
+                jump un_play_fail
+    elif persistent.CardsWon2:
+        menu:
+            "Играть турнир":
+                jump un_play
+            "Пропустить турнир (проиграть Алисе)":
+                jump dv_play_fail
+            "Пропустить турнир (проиграть Ульяне)":
+                jump us_play_fail
+            "Пропустить турнир (проиграть Лене)":
+                jump un_play_fail
+    elif persistent.CardsWon1:
+        menu:
+            "Играть турнир":
+                jump un_play
+            "Пропустить турнир (проиграть Ульяне)":
+                jump us_play_fail
+            "Пропустить турнир (проиграть Лене)":
+                jump un_play_fail
+    elif persistent.CardsFail:
+        menu:
+            "Играть турнир":
+                jump un_play
+            "Пропустить турнир (проиграть Лене)":
+                jump un_play_fail
+label un_play:
+
+    python:
+        dialogs = {
+                        (0,"win","jump"):          "un_play_win",
+                        (0,"fail","jump"):         "un_play_fail",
+                        (0,"draw","jump"):         "un_play_draw",
+                    }
+        generate_cards("bg hall",dialogs)
+        rival = CardGameRivalUn(un_avatar_set, translation["un"][_preferences.language])
+    jump cards_gameloop
+
+
+label un_play_fail:
+
+    $ renpy.block_rollback()
+
+    $ persistent.CardsFail = True
+    $ day2_card_result = 0
+    jump Un_fail_cards
+
+label un_play_draw:
+
+    $ show_cards()
+    window show
+    el "Ничья! Играйте ещё раз."
+    window hide
+    jump un_play
+
+label un_play_win:
+
+    $ renpy.block_rollback()
+
+    $ persistent.sprite_time = "sunset"
+    scene bg int_dining_hall_sunset 
+    with dissolve
+
+    window show
+
+
+    "Электроник тем временем с гордостью объявил, что первый тур окончен."
+    window hide
+
+    scene cg lvl_2_semen_win 
+    with dissolve
+
+    window hide
+
+    $ persistent.sprite_time = "sunset"
+    scene bg int_dining_hall_sunset 
+    with dissolve
+
+    jump Un_fin_cards
+
+label un_play:
+
+    python:
+        dialogs = {
+                        (0,"win","jump"):          "un_play_win",
+                        (0,"fail","jump"):         "un_play_fail",
+                        (0,"draw","jump"):         "un_play_draw",
+                    }
+        generate_cards("bg hall",dialogs)
+        rival = CardGameRivalUn(us_avatar_set, translation["us"][_preferences.language])
+    jump cards_gameloop
+
+
+label us_play_me_defend_2:
+
+    $ show_cards()
+    window show
+    us "Эй, не мешай карты – это меня путает!"
+    window hide
+    $ show_cards()
+    window show
+    "Ммм..."
+    window hide
+    return
+
+label us_play_fail:
+
+    $ renpy.block_rollback()
+
+    $ persistent.CardsWon1 = True
+
+    $ day2_card_result = 1
+    jump Us_fail_cards
+
+label us_play_draw:
+
+    $ show_cards()
+    window show
+    el "Ничья! Играйте ещё раз."
+    window hide
+    jump us_play
+
+label us_play_win:
+
+    $ renpy.block_rollback()
+
+    $ persistent.sprite_time = "sunset"
+    scene bg int_dining_hall_sunset 
+    with dissolve
+
+    show us dontlike pioneer at center  with dissolve
+    window show
+    us "Эй! Так нечестно!"
+    us "Ты должен был поддаваться и проиграть!"
+    "От недовольства она надула щёки и стала похожа на колобка."
+    us "Давай переиграем, только ты теперь поддавайся, слышишь?!"
+    "Но её слышал не только я, а весь зал."
+    "И даже Электроник."
+    el "Никаких переигровок!"
+    "Ульяна не обратила на него ни малейшего внимания."
+    show us angry pioneer at center  with dspr
+    us "Ты должен проиграть!"
+    sd"Я вообще с тобой не собираюсь играть второй раз."
+    "Спокойно сказал я."
+    us "Ах, так?"
+    sd"Да, так."
+    show us grin pioneer at center  with dspr
+    us "Тогда я всем расскажу о том, что ты к Алисе приставал."
+    "Сказала она шёпотом."
+    sd"Чего?!"
+    "Я перегнулся через стол и грозно посмотрел на неё."
+    sd"Значит, подслушивала?"
+    us "Не подслушивала, а просто мимо проходила."
+    "В конце концов, сыграть лишний раунд – это куда лучше, чем..."
+    th "А ведь она может!"
+    "Я вздохнул и обратился к Электронику."
+    sd"Переиграем, ничего страшного."
+    el "Как знаете..."
+    "Он пожал плечами."
+    "Итак, матч-реванш начался."
+    hide us  with dissolve
+    window hide
+
+label us2_play:
+
+    python:
+        dialogs = {
+                        (0,"win","jump"):  "us2_play_win",
+                        (0,"fail","jump"): "us2_play_fail",
+                        (0,"draw","jump"): "us2_play_draw",
+                    }
+        generate_cards("bg hall",dialogs)
+        rival = CardGameRivalUs(us_avatar_set, translation["us"][_preferences.language])
+    jump cards_gameloop
+
+label us2_play_fail:
+
+    $ renpy.block_rollback()
+
+    $ persistent.CardsWon1 = True
+
+    $ day2_card_result = 1
+    jump day2_main3
+
+label us2_play_draw:
+
+    $ show_cards()
+    window show
+    el "Ничья! Играйте ещё раз."
+    window hide
+    jump us2_play
+
+label us2_play_win:
+
+    $ renpy.block_rollback()
+
+    $ persistent.sprite_time = "sunset"
+    scene bg int_dining_hall_sunset 
+    with dissolve
+
+    show us dontlike pioneer at center  with dissolve
+    window show
+    sd"Проще простого."
+    "Сказал я и вальяжно развалился на стуле."
+    us "Так нечестно!"
+    th "Надеюсь, она не потребует ещё одной переигровки!"
+    sd"Почему же нечестно?"
+    "Усмехнулся я."
+    us "Ладно..."
+    "Обиженно сказала Ульяна и встала из-за стола."
+    hide us  with dissolve
+    "Я внимательно посмотрел на схему турнира, пытаясь понять, кто же мне достался в соперники по финалу."
+    show dv normal pioneer at center  with dissolve
+    "В ту же секунду ко мне за стол села Алиса."
+    "Я глупо и неестественно улыбнулся."
+    th "Как будто боюсь её!"
+    sd"Поздравляю с победой."
+    if day2_dv_bet == 0:
+        show dv angry pioneer at center  with dspr
+        dv "Ты ещё пожалеешь, что струсил."
+        th "Да я уже жалею..."
+        "И не о том, что струсил – не надо вообще было участвовать в этой дурацкой игре."
+    else:
+        dv "Рассчитываешь выиграть?"
+        sd"Рассчитываю, что ты сдержишь своё обещание."
+    show dv smile pioneer at center  with dspr
+    dv "Ладно, погнали!"
+    hide dv  with dissolve
+    window hide
+
+    jump dv_play
+
+label dv_play:
+
+    python:
+        dialogs = {
+                        (0,"win","jump"):  "dv_play_win",
+                        (0,"fail","jump"): "dv_play_fail",
+                        (0,"draw","jump"): "dv_play_draw",
+                    }
+        generate_cards("bg hall",dialogs)
+        rival = CardGameRivalDv(dv_avatar_set, translation["dv"][_preferences.language])
+    jump cards_gameloop
+
+label dv_play_draw:
+
+    $ show_cards()
+    window show
+    el "Ничья! Играйте ещё раз."
+    window hide
+    jump dv_play
+
+label dv_play_fail:
+
+    $ renpy.block_rollback()
+
+    $ persistent.CardsWon2 = True
+
+    $ day2_card_result = 2
+    jump day2_main3
+
+label dv_play_win:
+
+    $ renpy.block_rollback()
+
+    $ persistent.CardsWon3 = True
+
+    $ day2_card_result = 3
+    jump day2_main3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+label Un_fail_cards:
     "..."
     th"Ну правила я знаю."
     th"Играть умел."
     th"Но вот карты каждый раз разные..."
     "Опечаленный я покинул столовую."
+jump Mods_Arseny_Danil_Vlad_Artem_day_2_11
+label Un_fin_cards:
     # Если выйграть Лену:
     th"Проще простого."
     th"Я профи в этой игре."
@@ -1754,6 +2308,9 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     sd"А ещё чего?"
     us"Да я тебя и так выйграю."
     sd"Щас и посмотрим."
+    
+jump Mods_Arseny_Danil_Vlad_Artem_day_2_11
+label Us_fail_cards:
     # Если проиграть Ульяне:
     th"ЧЁРТ!"
     "Проигрывать зазнайке всегда обидно."
@@ -1765,6 +2322,8 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     "Несколько ходов назад."
     sd"Ну прощай тогда, профессионал."
     "Я с гордостью принял поражение и вышел прочь из столовой."
+jump Mods_Arseny_Danil_Vlad_Artem_day_2_11
+label Us_fin_cards:
     # Если выйграть Ульяну:
     sd"Да!"
     us"Нет!"
@@ -1788,6 +2347,8 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     "Будто уже победила."
     sd"Меньше слов больше дела."
     "Нам раздали карты и мы начали игру."
+jump Mods_Arseny_Danil_Vlad_Artem_day_2_11
+label Dv_fail_cards:
     # Если проиграть Алисе:
     "Блин!"
     "Ну, зато дошёл до финала и проиграл не кому-нибудь, а Алисе."
@@ -1810,6 +2371,8 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     "Алиса прервала мои мысли о ней."
     sd"Пока!"
     "Я встал и доволен собой вышел из столовой."
+jump Mods_Arseny_Danil_Vlad_Artem_day_2_11
+label Dv_fin_cards:
     # Если выйграть Алису: *+1*
     sd"ДА! Я чемпион!"
     "Радостно воскрикнул я."
@@ -1823,6 +2386,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_8:
     dv"Ну и сиди тогда здесь, победитель хренов."
     "Алиса недовольна вышла из столовой."
     th"Только эти двое не умеют принимать по-ра-же-ни-е"
+label Mods_Arseny_Danil_Vlad_Artem_day_2_11:
     # Тут все выборы сходятся.
     "Выйдя из столовой, время было уже темно."
     "Не знаю сколько точно, но думаю надо бы пойти уже в домик Ольги Дмитриевны."
