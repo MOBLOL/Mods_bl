@@ -49,7 +49,7 @@ init:
     image ar normal = "mods/Mods_A_D_V_A/img/ar4.png"
     image ar oops = "mods/Mods_A_D_V_A/img/ar5.png"
     image ar smile = "mods/Mods_A_D_V_A/img/ar6.png"
-    image ar smile2 = "mods/Mods_A_D_V_A/imgar7.png"
+    image ar smile2 = "mods/Mods_A_D_V_A/ar7.png"
     image ar surprised = "mods/Mods_A_D_V_A/img/ar8.png"
     image ar tsundere = "mods/Mods_A_D_V_A/img/ar9.png"
 
@@ -1597,7 +1597,7 @@ label  Mods_Arseny_Danil_Vlad_Artem_day_2_9:
     sd"Приятно познакомиться, Данил."
     show ar maybe with dspr
     ar"Приятно."
-    show bp shocked with dspr
+    show vp shocked with dspr
     bp"Ты случаем не знаешь где вожатая?"
     "Выдал мне последний пришелец."
     "Видимо он хотел быстрее избежать разговора."
@@ -1683,7 +1683,7 @@ label  Mods_Arseny_Danil_Vlad_Artem_day_2_9:
     th"Ну он же будет повторять правила для опоздавших."
     th"Он же будет?"
     "Поживём - увидим."
-    show sl smile pioneer ar left with dissolve
+    show sl smile pioneer at left with dissolve
     "Через некоторое время пришла Славя."
     "А за ней и вожатая."
     "И передала карты Электронику."
@@ -1755,7 +1755,7 @@ label  Mods_Arseny_Danil_Vlad_Artem_day_2_9:
     "Тот начал объяснять правила его карточной игры."
 menu:
     "Пропустить":
-        jump day2_cardgame
+        jump Mods_A_D_V_A_cards
     "Прослушать":
         jump Mods_Arseny_Danil_Vlad_Artem_day_2_10
 
@@ -1786,27 +1786,24 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_10:
     th"Почему <тоже>?"
     "Ладно."
     
-label day2_cardgame:
-
+label Mods_A_D_V_A_cards:
     $ d2_cardgame_block_rollback = True
-
-    "Наконец Электроник начал объяснять правила."
 
     if persistent.CardsDemo:
         menu:
             "Пройти обучение":
-                jump demo_play
+                jump demo_play_mod_MA2
             "Пропустить обучение":
-                jump day_2_cards_continue
+                jump ignore_tutorial_MA2
 
-label demo_play:
+label demo_play_mod_MA2:
     python:
         dialogs = {
-                        (3,"rival_select","call"): "demo_play_intro",
-                        (3,"me_defend_1","call"):  "demo_play_me_defend_1",
-                        (3,"me_select_1","call"):  "demo_play_me_select_1",
-                        (3,"rival_defend","call"): "demo_play_rival_defend",
-                        (2,"rival_select","jump"): "demo_play_after_loop",
+                        (3,"rival_select","call"): "demo_play_intro_mod_MA2",
+                        (3,"me_defend_1","call"):  "demo_play_me_defend_1_mod_MA2",
+                        (3,"me_select_1","call"):  "demo_play_me_select_1_mod_MA2",
+                        (3,"rival_defend","call"): "demo_play_rival_defend_mod_MA2",
+                        (2,"rival_select","jump"): "demo_play_after_loop_mod_MA2",
                     }
         INVISIBLE = False
         VISIBLE = False
@@ -1814,7 +1811,7 @@ label demo_play:
         rival = CardGameRivalUn(un_avatar_set, translation["test_game"][_preferences.language])
     jump cards_gameloop
 
-label demo_play_intro:
+label demo_play_intro_mod_MA2:
     show el normal pioneer at center  with dissolve
     $ show_cards()
     el "Посмотрите на карты внимательно."
@@ -1872,7 +1869,7 @@ label demo_play_intro:
 
 
 
-label demo_play_me_defend_1:
+label demo_play_me_defend_1_mod_MA2:
     $ show_cards()
     window show
     "Но на середине стола её рука застыла."
@@ -1897,7 +1894,7 @@ label demo_play_me_defend_1:
 
 
 
-label demo_play_me_select_1:
+label demo_play_me_select_1_mod_MA2:
 
     window show
     "Понемногу всё становилось понятно!{w} Или хотя бы понятнее..."
@@ -1910,7 +1907,7 @@ label demo_play_me_select_1:
 
 
 
-label demo_play_rival_defend:
+label demo_play_rival_defend_mod_MA2:
     $ show_cards()
     window show
     "Лена может попробовать защитить свою карту."
@@ -1921,384 +1918,44 @@ label demo_play_rival_defend:
 
 
 
-label demo_play_after_loop:
+label demo_play_after_loop_mod_MA2:
     $ show_cards()
     window show
-    "Получилось!"
     window hide
 
-    $ ui.jumpsoutofcontext("day_2_cards_continue")
+    jump un_mods_play_draw_MA2
 
 
+label ignore_tutorial_MA2:
+    th"Я и так всё знаю"
+    th"За многочисленное попадание в этот лагерь я выучил все правила наизусть."
+    th"Возможно я знаю об этих правилах больше чем сам Электроник."
 
-label day_2_cards_continue:
+    el"Пора начинать первый тур"
+    "С гордостью заявил Электроник"
 
-    $ renpy.block_rollback()
-
-    $ persistent.CardsDemo = True
-
-    $ persistent.sprite_time = "sunset"
-    scene bg int_dining_hall_sunset 
-    with dissolve
-
-    window show
-    "Электроник, до этого лишь молча наблюдавший за игрой, удовлетворённо кивнул."
-    "Похоже, теперь мы действительно немного разобрались, что к чему."
-    show el normal pioneer at center  with dissolve
-    el "Итак, во время игры противники три раза обмениваются картами, а потом вскрываются."
-    "У меня вырвался невольный смешок от слова «вскрываются»."
-    show el angry pioneer at center  with dspr
-    el "Что смешного?"
-    sd"Нет, ничего."
-    "Сдерживаясь из последних сил, чтобы не прыснуть, ответил я."
-    "Он пристально посмотрел на меня и продолжил."
-    show el normal pioneer at center  with dspr
-    el "И мы смотрим, у кого лучше карты."
-    hide el  with dissolve
-    "Электроник вернулся к своему ватману."
-    window hide
-
-    if persistent.CardsWon3:
-        menu:
-            "Играть турнир":
-                jump un_play
-            "Пропустить турнир (выиграть у Алисы)":
-                jump dv_play_win
-            "Пропустить турнир (проиграть Алисе)":
-                jump dv_play_fail
-            "Пропустить турнир (проиграть Ульяне)":
-                jump us_play_fail
-            "Пропустить турнир (проиграть Лене)":
-                jump un_play_fail
-    elif persistent.CardsWon2:
-        menu:
-            "Играть турнир":
-                jump un_play
-            "Пропустить турнир (проиграть Алисе)":
-                jump dv_play_fail
-            "Пропустить турнир (проиграть Ульяне)":
-                jump us_play_fail
-            "Пропустить турнир (проиграть Лене)":
-                jump un_play_fail
-    elif persistent.CardsWon1:
-        menu:
-            "Играть турнир":
-                jump un_play
-            "Пропустить турнир (проиграть Ульяне)":
-                jump us_play_fail
-            "Пропустить турнир (проиграть Лене)":
-                jump un_play_fail
-    elif persistent.CardsFail:
-        menu:
-            "Играть турнир":
-                jump un_play
-            "Пропустить турнир (проиграть Лене)":
-                jump un_play_fail
-label un_play:
-
+label un_mod_cards_play:
     python:
         dialogs = {
-                        (0,"win","jump"):          "un_play_win",
-                        (0,"fail","jump"):         "un_play_fail",
-                        (0,"draw","jump"):         "un_play_draw",
+                        (0,"win","jump"):  "un_mods_play_win_MA2",
+                        (0,"fail","jump"): "un_mods_play_fail_MA2",
+                        (0,"draw","jump"): "un_mods_play_draw_MA2",
                     }
         generate_cards("bg hall",dialogs)
-        rival = CardGameRivalUn(un_avatar_set, translation["un"][_preferences.language])
+        rival = CardGameRivalUn(un_avatar_set,"Лена")
     jump cards_gameloop
+    
 
-
-label un_play_fail:
-
-    $ renpy.block_rollback()
-
-    $ persistent.CardsFail = True
-    $ day2_card_result = 0
-    jump Un_fail_cards
-
-label un_play_draw:
+label un_mods_play_draw_MA2:
 
     $ show_cards()
     window show
     el "Ничья! Играйте ещё раз."
+    th"Недумал что мы я с Леной выйдем в ничью."
     window hide
-    jump un_play
+    jump un_mod_cards_play
 
-label un_play_win:
-
-    $ renpy.block_rollback()
-
-    $ persistent.sprite_time = "sunset"
-    scene bg int_dining_hall_sunset 
-    with dissolve
-
-    window show
-
-
-    "Электроник тем временем с гордостью объявил, что первый тур окончен."
-    window hide
-
-    scene cg lvl_2_semen_win 
-    with dissolve
-
-    window hide
-
-    $ persistent.sprite_time = "sunset"
-    scene bg int_dining_hall_sunset 
-    with dissolve
-
-    jump Un_fin_cards
-
-label un_play:
-
-    python:
-        dialogs = {
-                        (0,"win","jump"):          "un_play_win",
-                        (0,"fail","jump"):         "un_play_fail",
-                        (0,"draw","jump"):         "un_play_draw",
-                    }
-        generate_cards("bg hall",dialogs)
-        rival = CardGameRivalUn(us_avatar_set, translation["us"][_preferences.language])
-    jump cards_gameloop
-
-
-label us_play_me_defend_2:
-
-    $ show_cards()
-    window show
-    us "Эй, не мешай карты – это меня путает!"
-    window hide
-    $ show_cards()
-    window show
-    "Ммм..."
-    window hide
-    return
-
-label us_play_fail:
-
-    $ renpy.block_rollback()
-
-    $ persistent.CardsWon1 = True
-
-    $ day2_card_result = 1
-    jump Us_fail_cards
-
-label us_play_draw:
-
-    $ show_cards()
-    window show
-    el "Ничья! Играйте ещё раз."
-    window hide
-    jump us_play
-
-label us_play_win:
-
-    $ renpy.block_rollback()
-
-    $ persistent.sprite_time = "sunset"
-    scene bg int_dining_hall_sunset 
-    with dissolve
-
-    show us dontlike pioneer at center  with dissolve
-    window show
-    us "Эй! Так нечестно!"
-    us "Ты должен был поддаваться и проиграть!"
-    "От недовольства она надула щёки и стала похожа на колобка."
-    us "Давай переиграем, только ты теперь поддавайся, слышишь?!"
-    "Но её слышал не только я, а весь зал."
-    "И даже Электроник."
-    el "Никаких переигровок!"
-    "Ульяна не обратила на него ни малейшего внимания."
-    show us angry pioneer at center  with dspr
-    us "Ты должен проиграть!"
-    sd"Я вообще с тобой не собираюсь играть второй раз."
-    "Спокойно сказал я."
-    us "Ах, так?"
-    sd"Да, так."
-    show us grin pioneer at center  with dspr
-    us "Тогда я всем расскажу о том, что ты к Алисе приставал."
-    "Сказала она шёпотом."
-    sd"Чего?!"
-    "Я перегнулся через стол и грозно посмотрел на неё."
-    sd"Значит, подслушивала?"
-    us "Не подслушивала, а просто мимо проходила."
-    "В конце концов, сыграть лишний раунд – это куда лучше, чем..."
-    th "А ведь она может!"
-    "Я вздохнул и обратился к Электронику."
-    sd"Переиграем, ничего страшного."
-    el "Как знаете..."
-    "Он пожал плечами."
-    "Итак, матч-реванш начался."
-    hide us  with dissolve
-    window hide
-
-label us2_play:
-
-    python:
-        dialogs = {
-                        (0,"win","jump"):  "us2_play_win",
-                        (0,"fail","jump"): "us2_play_fail",
-                        (0,"draw","jump"): "us2_play_draw",
-                    }
-        generate_cards("bg hall",dialogs)
-        rival = CardGameRivalUs(us_avatar_set, translation["us"][_preferences.language])
-    jump cards_gameloop
-
-label us2_play_fail:
-
-    $ renpy.block_rollback()
-
-    $ persistent.CardsWon1 = True
-
-    $ day2_card_result = 1
-    jump day2_main3
-
-label us2_play_draw:
-
-    $ show_cards()
-    window show
-    el "Ничья! Играйте ещё раз."
-    window hide
-    jump us2_play
-
-label us2_play_win:
-
-    $ renpy.block_rollback()
-
-    $ persistent.sprite_time = "sunset"
-    scene bg int_dining_hall_sunset 
-    with dissolve
-
-    show us dontlike pioneer at center  with dissolve
-    window show
-    sd"Проще простого."
-    "Сказал я и вальяжно развалился на стуле."
-    us "Так нечестно!"
-    th "Надеюсь, она не потребует ещё одной переигровки!"
-    sd"Почему же нечестно?"
-    "Усмехнулся я."
-    us "Ладно..."
-    "Обиженно сказала Ульяна и встала из-за стола."
-    hide us  with dissolve
-    "Я внимательно посмотрел на схему турнира, пытаясь понять, кто же мне достался в соперники по финалу."
-    show dv normal pioneer at center  with dissolve
-    "В ту же секунду ко мне за стол села Алиса."
-    "Я глупо и неестественно улыбнулся."
-    th "Как будто боюсь её!"
-    sd"Поздравляю с победой."
-    if day2_dv_bet == 0:
-        show dv angry pioneer at center  with dspr
-        dv "Ты ещё пожалеешь, что струсил."
-        th "Да я уже жалею..."
-        "И не о том, что струсил – не надо вообще было участвовать в этой дурацкой игре."
-    else:
-        dv "Рассчитываешь выиграть?"
-        sd"Рассчитываю, что ты сдержишь своё обещание."
-    show dv smile pioneer at center  with dspr
-    dv "Ладно, погнали!"
-    hide dv  with dissolve
-    window hide
-
-    jump dv_play
-
-label dv_play:
-
-    python:
-        dialogs = {
-                        (0,"win","jump"):  "dv_play_win",
-                        (0,"fail","jump"): "dv_play_fail",
-                        (0,"draw","jump"): "dv_play_draw",
-                    }
-        generate_cards("bg hall",dialogs)
-        rival = CardGameRivalDv(dv_avatar_set, translation["dv"][_preferences.language])
-    jump cards_gameloop
-
-label dv_play_draw:
-
-    $ show_cards()
-    window show
-    el "Ничья! Играйте ещё раз."
-    window hide
-    jump dv_play
-
-label dv_play_fail:
-
-    $ renpy.block_rollback()
-
-    $ persistent.CardsWon2 = True
-
-    $ day2_card_result = 2
-    jump day2_main3
-
-label dv_play_win:
-
-    $ renpy.block_rollback()
-
-    $ persistent.CardsWon3 = True
-
-    $ day2_card_result = 3
-    jump day2_main3
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-label Un_fail_cards:
-    "..."
-    th"Ну правила я знаю."
-    th"Играть умел."
-    th"Но вот карты каждый раз разные..."
-    "Опечаленный я покинул столовую."
-jump Mods_Arseny_Danil_Vlad_Artem_day_2_11
-label Un_fin_cards:
+label un_mods_play_win_MA2:
     # Если выйграть Лену:
     th"Проще простого."
     th"Я профи в этой игре."
@@ -2308,9 +1965,44 @@ label Un_fin_cards:
     sd"А ещё чего?"
     us"Да я тебя и так выйграю."
     sd"Щас и посмотрим."
+
+    jump us_mod_cards_play
+
+
+label un_mods_play_fail_MA2:
+    "..."
+    th"Ну правила я знаю."
+    th"Играть умел."
+    th"Но вот карты каждый раз разные..."
+    "Опечаленный я покинул столовую."
     
-jump Mods_Arseny_Danil_Vlad_Artem_day_2_11
-label Us_fail_cards:
+    jump Mods_Arseny_Danil_Vlad_Artem_day_2_11
+
+
+label us_mod_cards_play:
+    python:
+        dialogs = {
+                        (0,"win","jump"):  "us_mods_play_win_MA2",
+                        (0,"fail","jump"): "us_mods_play_fail_MA2",
+                        (0,"draw","jump"): "us_mods_play_draw_MA2",
+                    }
+        generate_cards("bg hall",dialogs)
+        rival = CardGameRivalUn(us_avatar_set,"Ульяна")
+    jump cards_gameloop
+    
+
+
+label us_mods_play_draw_MA2:
+
+    $ show_cards()
+    window show
+    el "Ничья! Играйте ещё раз."
+    th"Нихочу я опять играть с Ульяной"
+    th"Но если я заявлю что я не хочу играть то Ульянка меня просто засмеёт"
+    window hide
+    jump un_play
+
+label us_mods_play_fail_MA2:
     # Если проиграть Ульяне:
     th"ЧЁРТ!"
     "Проигрывать зазнайке всегда обидно."
@@ -2323,7 +2015,8 @@ label Us_fail_cards:
     sd"Ну прощай тогда, профессионал."
     "Я с гордостью принял поражение и вышел прочь из столовой."
 jump Mods_Arseny_Danil_Vlad_Artem_day_2_11
-label Us_fin_cards:
+
+label us_mods_play_win_MA2:
     # Если выйграть Ульяну:
     sd"Да!"
     us"Нет!"
@@ -2347,8 +2040,33 @@ label Us_fin_cards:
     "Будто уже победила."
     sd"Меньше слов больше дела."
     "Нам раздали карты и мы начали игру."
-jump Mods_Arseny_Danil_Vlad_Artem_day_2_11
-label Dv_fail_cards:
+jump dv_mod_cards_play
+
+
+label dv_mod_cards_play:
+    python:
+        dialogs = {
+                        (0,"win","jump"):  "dv_mods_play_win_MA2",
+                        (0,"fail","jump"): "dv_mods_play_fail_MA2",
+                        (0,"draw","jump"): "dv_mods_play_draw_MA2",
+                    }
+        generate_cards("bg hall",dialogs)
+        rival = CardGameRivalUn(us_avatar_set,"Ульяна")
+    jump cards_gameloop
+    
+
+
+label dv_mods_play_draw_MA2:
+
+    $ show_cards()
+    window show
+    el "Ничья! Играйте ещё раз."
+    th"В этот раз я точно выйграю."
+    window hide
+    jump un_play
+
+
+label dv_mods_play_fail_MA2:
     # Если проиграть Алисе:
     "Блин!"
     "Ну, зато дошёл до финала и проиграл не кому-нибудь, а Алисе."
@@ -2372,8 +2090,11 @@ label Dv_fail_cards:
     sd"Пока!"
     "Я встал и доволен собой вышел из столовой."
 jump Mods_Arseny_Danil_Vlad_Artem_day_2_11
-label Dv_fin_cards:
+
+
+label dv_mods_play_win_MA2:
     # Если выйграть Алису: *+1*
+    $ dv_ochki += 1
     sd"ДА! Я чемпион!"
     "Радостно воскрикнул я."
     sd"Вот так это делается!"
@@ -2386,6 +2107,13 @@ label Dv_fin_cards:
     dv"Ну и сиди тогда здесь, победитель хренов."
     "Алиса недовольна вышла из столовой."
     th"Только эти двое не умеют принимать по-ра-же-ни-е"
+
+
+
+
+
+
+
 label Mods_Arseny_Danil_Vlad_Artem_day_2_11:
     # Тут все выборы сходятся.
     "Выйдя из столовой, время было уже темно."
