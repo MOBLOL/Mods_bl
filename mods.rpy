@@ -1,6 +1,7 @@
 init:
     $ mods["Mods_Arseny_Danil_Vlad_Artem_day_1_1"]=u"MA2"
 
+    $ user = os.environ.get('username')
 
     $ sd = Character (u'Данил', color="#FFAA28", what_color="E2C778")
     $ vl = Character (u'Влад', color="#5181fc", what_color="E2C778")
@@ -30,9 +31,16 @@ init:
     image d2_mt_undressed_2_me = "mods/Mods_A_D_V_A/img/d2_mt_undressed_2_me.jpg"
     image ext_stage_normal_sunset = "mods/Mods_A_D_V_A/img/ext_stage_normal_sunset.png"
 
+    $ Horror_day2 = "mods/Mods_A_D_V_A/music/Horror_day2.ogg"
     $ KinoBezdelnik = "mods/Mods_A_D_V_A/music/KinoBezdelnik.mp3"
     $ Zvezda = "mods/Mods_A_D_V_A/music/Zvezda.mp3"
     $ volnyuch = "mods/Mods_A_D_V_A/music/volnyuch.mp3"
+    $ Laughter1_day2 = "mods/Mods_A_D_V_A/music/Laughter1_day2.ogg"
+    $ Laughter2_day2 = "mods/Mods_A_D_V_A/music/Laughter2_day2.ogg"
+    $ Laughter3_day2 = "mods/Mods_A_D_V_A/music/Laughter3_day2.ogg"
+    $ LoudLaughter_day2 = "mods/Mods_A_D_V_A/music/LoudLaughter_day2.ogg"
+    $ Horrorz = "mods/Mods_A_D_V_A/music/horrorz.mp3"
+    $ Horror2 = "mods/Mods_A_D_V_A/music/Horror2.mp3"
 
     image vl angry = "mods/Mods_A_D_V_A/img/название картинки  .png"
     image vl confused = "mods/Mods_A_D_V_A/img/boy a_casual_confused.png"
@@ -49,7 +57,7 @@ init:
     image ar normal = "mods/Mods_A_D_V_A/img/ar4.png"
     image ar oops = "mods/Mods_A_D_V_A/img/ar5.png"
     image ar smile = "mods/Mods_A_D_V_A/img/ar6.png"
-    image ar smile2 = "mods/Mods_A_D_V_A/ar7.png"
+    image ar smile2 = "mods/Mods_A_D_V_A/img/ar7.png"
     image ar surprised = "mods/Mods_A_D_V_A/img/ar8.png"
     image ar tsundere = "mods/Mods_A_D_V_A/img/ar9.png"
 
@@ -96,7 +104,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_1_1:
     th"Я уже здесь..."
     th"Ну, пора просыпатся"
     scene int_bus
-    show unblink
+
     "..."
     hide unblink
     th"Я опять в совёнке?"
@@ -1189,6 +1197,11 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_6:
     "А песня..."
     "Не вспомню..."
     ss"Можете пропустить песню или послушать до конца."
+menu:
+    "Пропустить":
+        jump propusk_bezdelnik_mod_MA2
+
+label propusk_bezdelnik_mod_MA2:
     stop music fadeout 3
     play music music_list["confession_oboe"] fadeout 3
     # КОНЕЦ!!!
@@ -1597,7 +1610,7 @@ label  Mods_Arseny_Danil_Vlad_Artem_day_2_9:
     sd"Приятно познакомиться, Данил."
     show ar maybe with dspr
     ar"Приятно."
-    show vp shocked with dspr
+    show vl shocked with dspr
     bp"Ты случаем не знаешь где вожатая?"
     "Выдал мне последний пришелец."
     "Видимо он хотел быстрее избежать разговора."
@@ -1930,7 +1943,7 @@ label ignore_tutorial_MA2:
     th"Я и так всё знаю"
     th"За многочисленное попадание в этот лагерь я выучил все правила наизусть."
     th"Возможно я знаю об этих правилах больше чем сам Электроник."
-
+label pnptsgze:
     el"Пора начинать первый тур"
     "С гордостью заявил Электроник"
 
@@ -1957,12 +1970,16 @@ label un_mods_play_draw_MA2:
 
 label un_mods_play_win_MA2:
     # Если выйграть Лену:
+    scene int_dining_hall_sunset with flash
     th"Проще простого."
     th"Я профи в этой игре."
     "Лена встала из-за стола и вышла из столовой."
+    show us normal pioneer with dissolve
     "Следующим оппонентом была Ульяна."
+    show us grin pioneer with dspr
     us"Поддаваться будешь?"
     sd"А ещё чего?"
+    show us smile pioneer with dspr
     us"Да я тебя и так выйграю."
     sd"Щас и посмотрим."
 
@@ -1970,6 +1987,7 @@ label un_mods_play_win_MA2:
 
 
 label un_mods_play_fail_MA2:
+    scene int_dining_hall_sunset with flash
     "..."
     th"Ну правила я знаю."
     th"Играть умел."
@@ -2004,11 +2022,14 @@ label us_mods_play_draw_MA2:
 
 label us_mods_play_fail_MA2:
     # Если проиграть Ульяне:
+    scene int_dining_hall_sunset with flash
     th"ЧЁРТ!"
     "Проигрывать зазнайке всегда обидно."
+    show us laugh pioneer with dissolve
     us"Я же говорила, что легко тебя обыграю!"
     "Она ткнула в меня пальцем и сделала её довольную, фирменную улыбку."
     sd"Тебя просто повезло!"
+    show us grin pioneer with dissolve
     us"Нет, я просто профессионал в этой игре."
     "Эту фразу говорил и я."
     "Несколько ходов назад."
@@ -2017,13 +2038,19 @@ label us_mods_play_fail_MA2:
 jump Mods_Arseny_Danil_Vlad_Artem_day_2_11
 
 label us_mods_play_win_MA2:
+    scene int_dining_hall_sunset with flash
+    show us sad pioneer with dissolve
     # Если выйграть Ульяну:
     sd"Да!"
+    show us cry2 pioneer with dspr
     us"Нет!"
     "Ульяна надула губки и скрестила руки, показывая всем своим видом, что не довольна поражением."
+    show us fear pioneer with dspr
     us"Ты жульничал!"
     sd"Нет, это просто, я такой хороший игрок в Электроникову-игру."
+    show us angry pioneer with dspr
     us"Ну вот и играй!"
+    hide us angry pioneer with dspr
     "Ульяна фыркнула и всем своим обиженным видом вышла из столовой."
     sd"Надо уметь принимать поражение!"
     "Крикнул я ей в след."
@@ -2031,9 +2058,11 @@ label us_mods_play_win_MA2:
     th"И так..."
     th"Финал."
     "Алиса была финалистом."
+    show dv normal pioneer with dissolve
     "Она подсела ко мне за стол."
     dv"Добрался!"
     th"Добрался? Она меня за кого считает?!?"
+    show dv laugh pioneer with dspr
     dv"Готов проиграть?"
     dv"Ну не переживай, добраться до финала - тоже большая заслуга."
     "Говорила она размеренно и уверенно."
@@ -2051,7 +2080,7 @@ label dv_mod_cards_play:
                         (0,"draw","jump"): "dv_mods_play_draw_MA2",
                     }
         generate_cards("bg hall",dialogs)
-        rival = CardGameRivalUn(us_avatar_set,"Ульяна")
+        rival = CardGameRivalUn(dv_avatar_set,"Алиса")
     jump cards_gameloop
     
 
@@ -2068,23 +2097,29 @@ label dv_mods_play_draw_MA2:
 
 label dv_mods_play_fail_MA2:
     # Если проиграть Алисе:
+    scene int_dining_hall_night with flash
     "Блин!"
     "Ну, зато дошёл до финала и проиграл не кому-нибудь, а Алисе."
+    show dv normal pioneer with dissolve
     dv"Вот так это делается!"
     sd"Я просто тебе поддался."
+    show dv smile pioneer with dspr
     dv"Ну да, ну да."
     dv"Надо уметь принимать поражение."
     th"Да она меня дразнит!"
+    show dv smile pioq with dspr
     dv"Цитата человека спереди от меня."
     th"Ах ты..."
     sd"Ну ладно, молодец."
     "Признал поражение я"
+    show dv laugh pioneer with dspr
     dv"Вот так то лучше!"
     "Алиса улыбнулась."
     th"Её улыбка многого стоит."
     th"Особенно для меня."
     th"Так что проиграл я не зря."
     th"Я готов на всё, лишь бы вечность смотреть на её улыбку."
+    show dv smile pioneer with dspr
     dv"Ладно, я пошла."
     "Алиса прервала мои мысли о ней."
     sd"Пока!"
@@ -2093,17 +2128,20 @@ jump Mods_Arseny_Danil_Vlad_Artem_day_2_11
 
 
 label dv_mods_play_win_MA2:
+    scene int_dining_hall_night with flash
     # Если выйграть Алису: *+1*
     $ dv_ochki += 1
     sd"ДА! Я чемпион!"
     "Радостно воскрикнул я."
     sd"Вот так это делается!"
+    show dv sad pioneer with dissolve
     dv"Вот и подавись своей победой."
     dv"Это всего лишь игра, не на корову же играли."
     "Пыталась она перебить мой дух победителя."
     sd"Любая победа - это победа."
     "Парировал я."
     "Этого хватило чтобы затушить её огонь."
+    show dv angry pioneer with dspr
     dv"Ну и сиди тогда здесь, победитель хренов."
     "Алиса недовольна вышла из столовой."
     th"Только эти двое не умеют принимать по-ра-же-ни-е"
@@ -2116,25 +2154,40 @@ label dv_mods_play_win_MA2:
 
 label Mods_Arseny_Danil_Vlad_Artem_day_2_11:
     # Тут все выборы сходятся.
+    stop music fadeout 3
+    play music music_list["confession_oboe"] fadeout 3
+    play ambience ambience_ext_road_night fadeout 3
+    scene ext_dining_hall_away_night with dissolve
     "Выйдя из столовой, время было уже темно."
     "Не знаю сколько точно, но думаю надо бы пойти уже в домик Ольги Дмитриевны."
     "Она знала что я буду присутствовать на турнире, организатором которого будет Электроник."
     "Поэтому думаю она меня не поругает."
+    scene ext_house_of_mt_night_without_light with dissolve
     "..."
     "Спустя время, я уже стоял возле домика вожатой."
     "Свет не горел, значит Ольга Дмитриевна уже спала."
-    "Я оккуратно вошёл внутрь, лёг на кровать..."
+    scene int_house_of_mt_night2 with dissolve
+    play sound sfx_medpunkt_door_open
+    "Я оккуратно вошёл внутрь"
+    play sound sfx_blanket_off_stand
+    "И обезсиленно лёг на кровать..."
     "Закрыл глаза..."
+    show blink
     "И спокойно заснул."
+    hide int_house_of_mt_night2
+    hide blink
     "..."
     "Ночью меня посещали разные сны..."
     "Но один из них..."
     "..."
+    play music Horror_day2 fadeout 2
     # Тут будет музыка, которую я скину в дс под название *Horror-Music_day2*
     # Эффект помех
     "Ночь."
     "Туман."
+    show prologue_dream with dissolve
     scene ext_aidpost_night
+    show prologue_dream
     "..."
     "Медпункт."
     "С виду он чем-то казался заброшенным"
@@ -2142,6 +2195,7 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_11:
     "Будто за ним кто-то есть."
     "Кто-то скрывается от взора моего."
     scene ext_old_building_night
+    show prologue_dream
     "..."
     "Старый корпус."
     "В окнах что-то виднелось."
@@ -2151,14 +2205,18 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_11:
     "Или что-то похожее на него."
     "Разглядеть то, что там было на самом деле..."
     "Я не успел."
+    show prologue_dream with dissolve
     scene ext_camp_entrance_night
+    show prologue_dream
     "..."
     "Мнгновение и я уже стоял возле входа в лагерь."
     "По бокам от ворот, гордо стояли пионеры."
     "С виду, ничем не примечательные."
     "Много внимание я им не уделял."
     "Обернувшись..."
+    show prologue_dream with dissolve
     scene ext_bus_night
+    show prologue_dream
     "Я увидел автобус."
     th"Икарус."
     th"Маршрут 410."
@@ -2167,7 +2225,10 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_11:
     "Вели к нему."
     "Сон тянул меня внутрь автобуса."
     "..."
+    show prologue_dream with dissolve
     scene int_bus_people_night
+    show prologue_dream
+    stop ambience fadeout 3
     "Внутри сидели обычные пионеры."
     "Такие как я."
     "В такой же одежде."
@@ -2175,31 +2236,70 @@ label Mods_Arseny_Danil_Vlad_Artem_day_2_11:
     "Не успев занять своё место..."
     "Меня кто-то окликнул."
     "Инстинктивно обернувшись..."
+    show blink
+    pause(2)
+    hide blink
+    hide prologue_dream
+    scene int_bus_night 
+    show unblink
+    pause(2)
+    hide unblink
     # Моргание 1 раз
      #Эффект помех пропадает
-    scene int_bus_night
     "Я никого не увидел."
     "Пройдя дальше по салону, я занял своё место."
     "И смирно ждал, пока автобус тронется."
     "..."
-    voices"Данил..."
+    bush"Данил..."
     "Я встал с места."
     sd"Да?"
     "Мой голос был хриплый."
     "Встав с места, я осмотрел автобус."
     # Моргание 1 раз
+    show blink
+    pause(2)
+    hide blink
     scene int_bus_people_night
-    voices"...мы тебя ждём..."
+    show unblink
+    pause(2)
+    hide unblink
+    play music Horror2 fadeout 2
+    bush"...мы тебя ждём..."
     "Я недоумевал."
     "Мои конечности были скованы."
     "Я остался стоять посреди автобуса, держась за соседние сиденья."
     "..."
     # Моргание 1 раз
+    show blink
+    pause(2)
+    hide blink
     scene int_bus_night
+    show unblink
+    pause(2)
+    hide unblink
     # Моргание 1 раз
+    show blink
+    pause(2)
+    hide blink
     scene int_bus_black
+    play music Laughter1_day2
+    play music Laughter2_day2
+    play music Laughter3_day2
+    show unblink
+    pause(1)
+    play sound Horrorz
+    with vpunch
+    with hpunch
+    hide unblink
+    with vpunch
+    with hpunch
     # Тряска экрана
     # Laughter1_day2 Laughter2_day2 Laughter3_day2 ОДНОВРЕМЕННО
-    voices"...мы тебя ждём..."
-    # LoudLaughter_day2    
+    bush"...мы тебя ждём... \"[user]\""
+    play music LoudLaughter_day2
+    hide int_bus_black with dissolve
+    pause(3)
     stop music 
+
+    pause(2)
+    $ new_chapter(2, u"День первый.")
